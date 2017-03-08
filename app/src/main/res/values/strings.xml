@@ -1,0 +1,81 @@
+<resources>
+    <string name="app_name">SalesDistribution</string>
+    <string name="login">Log In</string>
+    <string name="title_activity_dashboard">Dashboard</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="customer_name">Customer Name</string>
+    <string name="customer_type">Customer Type</string>
+    <string name="mobile">Mobile</string>
+    <string name="address">Address</string>
+    <string name="category">Category</string>
+    <string name="register">Register</string>
+    <string name="sales_person">Sales Person</string>
+    <string name="room_no">Room No</string>
+    <string name="house_name">House Name</string>
+    <string name="holding_no">Holding No</string>
+    <string name="road_no">Road No</string>
+    <string name="Road_name">Road Name</string>
+    <string name="Block_no">Block No</string>
+    <string name="sector">Sector</string>
+    <string name="Landmark">Landmark</string>
+    <string name="area">Area</string>
+    <string name="district">District</string>
+    <string name="bazar">Bazar/Mohalla</string>
+    <string name="post_name">Post office name</string>
+    <string name="post_code">Post Code</string>
+    <string name="other_then_thana">Other then Thana</string>
+    <string name="forget_password">Forget password??</string>
+    <string name="order_sl">Order sl no</string>
+    <string name="delivery_date">Delivery Date</string>
+    <string name="market">Market</string>
+    <string name="mpo">MPO</string>
+    <string name="customer_entry">Customer Entry</string>
+    <string name="product_details">Product details</string>
+    <string name="order_date">Order Date</string>
+    <string name="calculate">Calculate</string>
+
+
+    <!-- testing-->
+    <string-array name="DIVISION">
+        <item>Select District</item>
+        <item>Dhaka</item>
+        <item>Chittagong</item>
+        <item>Khulna</item>
+        <item>Barisal</item>
+        <item>Sylhet</item>
+        <item>Rangpur</item>
+        <item>Rajshahi</item>
+        <item>Comilla</item>
+        <item>Bandarban</item>
+        <item>Rangamati</item>
+        <item>Dinajpur</item>
+        <item>Vhola</item>
+        <item>Sirajgang</item>
+        <item>Lalmonirhat</item>
+
+    </string-array>
+
+    <string-array name="TYPE">
+        <item>Select Cutomer type</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+    <string-array name="PAYMENT">
+        <item>Select Payment type</item>
+        <item>Cash</item>
+        <item>Cheque</item>
+        <item>Credit</item>
+    </string-array>
+
+
+</resources>
