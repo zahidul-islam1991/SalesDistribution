@@ -17,10 +17,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class Dashboard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    TextView textviewSalesPerson;
+    TextView textViewEmployeCode;
+    public static String name="text";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +31,21 @@ public class Dashboard extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Home");
         setSupportActionBar(toolbar);
+
+        final TextView textView=(TextView) findViewById(R.id.textView);
+        TextView textView1=(TextView)findViewById(R.id.textView2);
+
+        //Intent intent=getIntent();
+        //String username=intent.getStringExtra(Login.USER_NAME);
+
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        String username_string = extras.getString(Login.USER_NAME);
+        String empCode=extras.getString(Login.EMP_CODE);
+        String name=extras.getString(Login.NAME);
+        textView.setText(name);
+       // textView1.setText("WELCOME"+" "+empCode);
+
 
 
 
@@ -37,6 +55,10 @@ public class Dashboard extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(Dashboard.this,Customer_Resistration.class);
+                Bundle b = new Bundle();
+                b.putString("name", textviewSalesPerson.getText().toString());
+                b.putString("empCode", textViewEmployeCode.getText().toString());
+                intent.putExtra("personBdl", b);
                 startActivity(intent);
             }
         });
@@ -47,9 +69,23 @@ public class Dashboard extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#123456")));
+
+        View header = navigationView.getHeaderView(0);
+        textviewSalesPerson = (TextView) header.findViewById(R.id.salesPersonName);
+        textViewEmployeCode= (TextView) header.findViewById(R.id.employe_code);
+        Intent i=getIntent();
+        String sals=intent.getStringExtra(Login.USER_NAME);
+
+        String empcode=extras.getString(Login.EMP_CODE);
+
+        textviewSalesPerson.setText(username_string);
+        textViewEmployeCode.setText(empcode);
+
+
 
     }
 
@@ -91,10 +127,21 @@ public class Dashboard extends AppCompatActivity
 
         if (id == R.id.nav_order) {
             Intent intent = new Intent(this, OrderEntry.class);
+            Bundle b = new Bundle();
+            b.putString("name", textviewSalesPerson.getText().toString());
+            b.putString("empCode", textViewEmployeCode.getText().toString());
+            intent.putExtra("personBdl", b);
             startActivity(intent);
         } else if (id == R.id.nav_create_customer) {
-            Intent intent= new Intent(this,Customer_Resistration.class);
+            Intent intent= new Intent(Dashboard.this,Customer_Resistration.class);
+
+            Bundle b = new Bundle();
+            b.putString("name", textviewSalesPerson.getText().toString());
+            b.putString("empCode", textViewEmployeCode.getText().toString());
+            intent.putExtra("personBdl", b);
+
             startActivity(intent);
+
 
         } else if (id == R.id.nav_slideshow) {
             Intent intent = new Intent(this,Customer_Resistration.class);
@@ -110,5 +157,6 @@ public class Dashboard extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+
     }
 }

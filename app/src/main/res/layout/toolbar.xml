@@ -15,15 +15,15 @@
         android:layout_width="wrap_content"
         android:layout_height="20dp"
         android:visibility="visible"
-        android:paddingLeft="60dp"
+        android:paddingLeft="80dp"
         android:text="Abdul Karim"/>
     <TextView
-        android:id="@+id/toolbarTerritoryCode"
+        android:id="@+id/toolbarEmployeCode"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
         android:layout_below="@+id/toolbarSalesPerson"
         android:visibility="visible"
-        android:paddingLeft="60dp"
+        android:paddingLeft="80dp"
         android:text="10"/>
     </RelativeLayout>
 

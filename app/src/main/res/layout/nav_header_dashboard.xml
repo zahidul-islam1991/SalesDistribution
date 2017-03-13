@@ -18,22 +18,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:textStyle="bold"
+        android:textStyle="normal"
         android:text="Abdul karim"
+        android:textSize="24dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
+<!--
     <TextView
         android:id="@+id/designation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="12sp"
         android:text="Branch Manager" />
+        -->
     <TextView
         android:id="@+id/employe_code"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="12sp"
+        android:textSize="20dp"
         android:text="Employe Code : 1010" />
+   <!--
     <TextView
         android:id="@+id/territory"
         android:layout_width="wrap_content"
@@ -46,5 +49,6 @@
         android:layout_height="wrap_content"
         android:textSize="12sp"
         android:text="Territory Code : 10" />
+        -->
 
 </LinearLayout>

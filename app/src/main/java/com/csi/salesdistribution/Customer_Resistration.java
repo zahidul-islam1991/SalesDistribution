@@ -1,5 +1,6 @@
 package com.csi.salesdistribution;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -9,12 +10,20 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 public class Customer_Resistration extends AppCompatActivity {
-
+TextView textViewSalesPerson;
+    TextView textViewCustomerName;
+    TextView textViewEmployeCode;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer__resistration);
 
+        textViewCustomerName=(TextView)findViewById(R.id.customer_name) ;
+        /*Intent i = getIntent();
+        Bundle b = i.getBundleExtra("personBdl");
+        String name = b.getString("name");
+        textViewCustomerName.setText(name);
+        */
         initToolbar();
 
 
@@ -37,6 +46,21 @@ public class Customer_Resistration extends AppCompatActivity {
         toolbar.setTitle("Customer");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        textViewSalesPerson=(TextView)toolbar.findViewById(R.id.toolbarSalesPerson);
+        textViewEmployeCode=(TextView)toolbar.findViewById(R.id.toolbarEmployeCode);
+        Intent i = getIntent();
+        Bundle b = i.getBundleExtra("personBdl");
+        String name = b.getString("name");
+        String code=b.getString("empCode");
+        textViewSalesPerson.setText(name);
+        textViewEmployeCode.setText(code);
+
+
+
+
+
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

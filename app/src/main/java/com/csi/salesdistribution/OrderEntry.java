@@ -1,5 +1,6 @@
 package com.csi.salesdistribution;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -7,11 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class OrderEntry extends AppCompatActivity {
+      TextView textViewSalesPerson;
+      TextView textViewEmployeCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +25,13 @@ public class OrderEntry extends AppCompatActivity {
 
         initToolbar();
         initUI();
+
+        // Order date and delivary date
+        EditText orderdate=(EditText)findViewById(R.id.order_date);
+        EditText delivarydate=(EditText)findViewById(R.id.delivary_date);
+
+        //Datepicker for order date
+
 
         Spinner payment_method= (Spinner) findViewById(R.id.spinner_payment_method);
 
@@ -150,6 +162,17 @@ public class OrderEntry extends AppCompatActivity {
         toolbar.setTitle("Order Entry");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        textViewSalesPerson=(TextView)toolbar.findViewById(R.id.toolbarSalesPerson);
+        textViewEmployeCode=(TextView)toolbar.findViewById(R.id.toolbarEmployeCode);
+        Intent i = getIntent();
+        Bundle b = i.getBundleExtra("personBdl");
+        String name = b.getString("name");
+        String code=b.getString("empCode");
+        textViewSalesPerson.setText(name);
+        textViewEmployeCode.setText(code);
+
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
