@@ -1,6 +1,16 @@
 package com.csi.salesdistribution.Utility;
 
 import android.util.Log;
+import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.csi.salesdistribution.Customer_Resistration;
+import com.csi.salesdistribution.Model.Product;
+import com.csi.salesdistribution.SuggestGetSet;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -14,9 +24,19 @@ import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 
 public class Util {
@@ -49,28 +69,29 @@ public class Util {
             ex.printStackTrace();
             return null;
         }
+
+
     }
-    //region Commented Code
-    /*    public static String sendHttpRequest(JSONObject jsonObject) {
-        try {
-            int TIMEOUT_MILLISEC = 10000;
 
-            HttpParams httpParams = new BasicHttpParams();
-            HttpConnectionParams.setConnectionTimeout(httpParams, TIMEOUT_MILLISEC);
-            HttpConnectionParams.setSoTimeout(httpParams, TIMEOUT_MILLISEC);
-
-            HttpClient client = new DefaultHttpClient(httpParams);
-            HttpPost request = new HttpPost(Constants.API_LOG_IN);
-            request.setEntity(new ByteArrayEntity(jsonObject.toString().getBytes("UTF8")));
-
-            HttpResponse response = client.execute(request);
-
-            InputStream in = response.getEntity().getContent();
-            return response.
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return null;
+    public static Product getProductById(String productId) {
+        for (Product product : Constants.productList) {
+            if (product.getProd_id().equals(productId)) {
+                return product;
+            }
         }
-    }*/
-    //endregion
-}
+        return null;
+    }
+
+    public static Product getProductByName(String productName) {
+        for (Product product : Constants.productList) {
+            if (product.getName().equals(productName)) {
+                return product;
+            }
+        }
+        return null;
+    }
+
+
+
+
+    }

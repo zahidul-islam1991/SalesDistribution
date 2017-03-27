@@ -23,6 +23,7 @@ public class Dashboard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     TextView textviewSalesPerson;
     TextView textViewEmployeCode;
+    TextView textView;
     public static String name="text";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +33,9 @@ public class Dashboard extends AppCompatActivity
         toolbar.setTitle("Home");
         setSupportActionBar(toolbar);
 
-        final TextView textView=(TextView) findViewById(R.id.textView);
+        textView=(TextView) findViewById(R.id.textView);
         TextView textView1=(TextView)findViewById(R.id.textView2);
+        //textViewApiToken=(TextView) findViewById(R.id.textViewApiToken);
 
         //Intent intent=getIntent();
         //String username=intent.getStringExtra(Login.USER_NAME);
@@ -43,8 +45,12 @@ public class Dashboard extends AppCompatActivity
         String username_string = extras.getString(Login.USER_NAME);
         String empCode=extras.getString(Login.EMP_CODE);
         String name=extras.getString(Login.NAME);
-        textView.setText(name);
+        String apiToken=extras.getString(Login.API_TOKEN);
+        String id=extras.getString(Login.ID);
+
+        textView.setText(apiToken);
        // textView1.setText("WELCOME"+" "+empCode);
+
 
 
 
@@ -58,6 +64,7 @@ public class Dashboard extends AppCompatActivity
                 Bundle b = new Bundle();
                 b.putString("name", textviewSalesPerson.getText().toString());
                 b.putString("empCode", textViewEmployeCode.getText().toString());
+                b.putString("apiToken",textView.getText().toString());
                 intent.putExtra("personBdl", b);
                 startActivity(intent);
             }
@@ -81,6 +88,8 @@ public class Dashboard extends AppCompatActivity
         String sals=intent.getStringExtra(Login.USER_NAME);
 
         String empcode=extras.getString(Login.EMP_CODE);
+        //String api=extras.getString(Login.API_TOKEN);
+
 
         textviewSalesPerson.setText(username_string);
         textViewEmployeCode.setText(empcode);
@@ -130,6 +139,7 @@ public class Dashboard extends AppCompatActivity
             Bundle b = new Bundle();
             b.putString("name", textviewSalesPerson.getText().toString());
             b.putString("empCode", textViewEmployeCode.getText().toString());
+            b.putString("apiToken",textView.getText().toString());
             intent.putExtra("personBdl", b);
             startActivity(intent);
         } else if (id == R.id.nav_create_customer) {
@@ -138,14 +148,14 @@ public class Dashboard extends AppCompatActivity
             Bundle b = new Bundle();
             b.putString("name", textviewSalesPerson.getText().toString());
             b.putString("empCode", textViewEmployeCode.getText().toString());
+            b.putString("apiToken",textView.getText().toString());
             intent.putExtra("personBdl", b);
 
             startActivity(intent);
 
 
         } else if (id == R.id.nav_slideshow) {
-            Intent intent = new Intent(this,Customer_Resistration.class);
-            startActivity(intent);
+           
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {

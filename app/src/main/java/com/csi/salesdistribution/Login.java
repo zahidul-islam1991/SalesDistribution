@@ -3,6 +3,8 @@ package com.csi.salesdistribution;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.provider.SyncStateContract;
@@ -54,6 +56,8 @@ public class Login extends AppCompatActivity {
     public static final String USER_NAME = "USERNAME";
     public static final String EMP_CODE="EMPCODE";
     public static final String NAME="NAME";
+    public static final String API_TOKEN="APITOKEN";
+    public static final String ID="ID";
     String username;
     String password;
 
@@ -98,7 +102,8 @@ public class Login extends AppCompatActivity {
                     private Dialog loadingDialog;
                     private String empCode="Test";
                     private String name="Test";
-
+                    private String apiToken="text";
+                    private  String id="text";
 
                     @Override
                     protected void onPreExecute() {
@@ -126,11 +131,11 @@ public class Login extends AppCompatActivity {
                                 Log.i("LoginIF",jsonObjectResponse.getString(Constants.MESSAGE));
                                 JSONObject userData = jsonObjectResponse.getJSONObject("data");
 
-                                String id = userData.getString(Constants.LogInFields.ID);
+                                id = userData.getString(Constants.LogInFields.ID);
                                 name = userData.getString(Constants.LogInFields.NAME);
                                 String username = userData.getString(Constants.LogInFields.USER_NAME);
                                 empCode = userData.getString(Constants.LogInFields.EMP_CODE);
-                                String apiToken = userData.getString(Constants.LogInFields.API_TOKEN);
+                                apiToken = userData.getString(Constants.LogInFields.API_TOKEN);
                                 String userStatus = userData.getString(Constants.LogInFields.STATUS);
                                 result = jsonObjectResponse.getString(Constants.STATUS);
 
@@ -184,12 +189,18 @@ public class Login extends AppCompatActivity {
                         loadingDialog.dismiss();
                         if (result.equalsIgnoreCase("success")) {
                             Intent intent = new Intent(Login.this, Dashboard.class);
-                            Toast.makeText(getApplicationContext(), "Login Successfull", Toast.LENGTH_LONG).show();
+                            Toast toast= Toast.makeText(getApplicationContext(), "Login Successfull", Toast.LENGTH_LONG);
+                            View view=toast.getView();
+                            view.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4caf50")));
+                            view.setBackgroundResource(R.drawable.toast_style);
+                            toast.show();
+                            //Toast.makeText(getApplicationContext(), "Login Successfull", Toast.LENGTH_LONG).show();
                             //intent.putExtra(USER_NAME, username);
                             Bundle extra=new Bundle();
                             extra.putString(USER_NAME, username);
                             extra.putString(EMP_CODE, empCode);
                             extra.putString(NAME, name);
+                            extra.putString(API_TOKEN, apiToken);
                             intent.putExtras(extra);
                             finish();
                             startActivity(intent);
@@ -238,8 +249,8 @@ public class Login extends AppCompatActivity {
         forget_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Login.this, Dashboard.class);
-                startActivity(intent);
+                //Intent intent = new Intent(Login.this, Dashboard.class);
+                //startActivity(intent);
                 Toast.makeText(Login.this, "Forget Password", Toast.LENGTH_LONG).show();
             }
         });
@@ -257,4 +268,7 @@ public class Login extends AppCompatActivity {
         editTextPassword = (EditText) findViewById(R.id.password);
 
     }
+
+    //Show internet connection
+
 }

@@ -43,32 +43,104 @@
     <!-- testing-->
     <string-array name="DIVISION">
         <item>Select District</item>
-        <item>Dhaka</item>
-        <item>Chittagong</item>
-        <item>Khulna</item>
         <item>Barisal</item>
-        <item>Sylhet</item>
-        <item>Rangpur</item>
-        <item>Rajshahi</item>
-        <item>Comilla</item>
+        <item>Barguna</item>
         <item>Bandarban</item>
-        <item>Rangamati</item>
+        <item>Bagerhat</item>
+        <item>Bhola</item>
+        <item>Brahmanbaria</item>
+        <item>Bogra</item>
+
+        <item>Chadpur</item>
+        <item>Chittagong</item>
+        <item>Comilla</item>
+        <item>Chuadanga</item>
+        <item>Chapainababganj</item>
+        <item>Cox Bazar</item>
+
+        <item>Dhaka</item>
         <item>Dinajpur</item>
-        <item>Vhola</item>
-        <item>Sirajgang</item>
+
+        <item>Faridpur</item>
+        <item>Feni</item>
+
+        <item>Gazipur</item>
+        <item>Gopalganj</item>
+        <item>Gaibandha</item>
+
+        <item>Habiganj</item>
+
+        <item>Jhalokati</item>
+        <item>Jamalpur</item>
+        <item>Jesssore</item>
+        <item>Jhenaidah</item>
+        <item>Joypurhat</item>
+
+        <item>Khagrachhari</item>
+        <item>Kishoregonj</item>
+        <item>Khulna</item>
+        <item>Kushtia</item>
+        <item>Kurigram</item>
+
+        <item>Lakshmipur</item>
         <item>Lalmonirhat</item>
+
+        <item>Madaripur</item>
+        <item>Manikganj</item>
+        <item>Munshiganj</item>
+        <item>Mymensingh</item>
+        <item>Magura</item>
+        <item>Meherpur</item>
+        <item>Maulvibazar</item>
+
+        <item>Noakhali</item>
+        <item>Narayanganj</item>
+        <item>Narsingdi</item>
+        <item>Netrokona</item>
+        <item>Narail</item>
+        <item>Naogaon</item>
+        <item>Natore</item>
+        <item>Nilphamari</item>
+
+        <item>Patuakhali</item>
+        <item>Pirojpur</item>
+        <item>Pabna</item>
+        <item>Panchagarh</item>
+
+        <item>Rangamati</item>
+        <item>Rajbari</item>
+        <item>Rajshahi</item>
+        <item>Rangpur</item>
+
+        <item>Shariatpur</item>
+        <item>Sherpur</item>
+        <item>Satkhira</item>
+        <item>Sirajganj</item>
+        <item>Sylhet</item>
+        <item>Sunamgang</item>
+
+        <item>Tangail</item>
+        <item>ThakurGaon</item>
+
+
 
     </string-array>
 
     <string-array name="TYPE">
-        <item>Select Cutomer type</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
+        <item>Select Customer type</item>
+        <item>Clinic</item>
+        <item>Corporate</item>
+        <item>Doctor cum Chemist</item>
+        <item>Institute</item>
+        <item>NGO</item>
+        <item>Retailer</item>
+        <item>Tea State</item>
+        <item>Village whole Saler</item>
+        <item>Village Retailer</item>
+        <item>Whole Saler</item>
+        <item>Whole Sale Market</item>
+        <item>A</item>
+
     </string-array>
     <string-array name="PAYMENT">
         <item>Select Payment type</item>
@@ -76,6 +148,7 @@
         <item>Cheque</item>
         <item>Credit</item>
     </string-array>
+
 
 
 </resources>

@@ -69,34 +69,40 @@
                 </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
-            <LinearLayout
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext_style"
+            android:orientation="horizontal">
+
+        <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/edittext_style"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp">
 
-                <Spinner
-                    android:id="@+id/spinner_order_page"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/md_green_500"
-                    android:scrollbarSize="4dp"
+                <TextView
+                    android:id="@+id/payment"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:popupBackground="@drawable/spinner_popup_style"/>
-
+                    android:gravity="center|left|start"
+                    android:textColor="@color/white"
+                    android:textSize="18dp" />
 
                 <Spinner
                     android:id="@+id/spinner_payment_method"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:popupBackground="@drawable/spinner_popup_style"
                     android:backgroundTint="@color/md_green_500"
                     android:scrollbarSize="4dp"
-                    android:layout_height="match_parent"
-                    android:popupBackground="@drawable/spinner_popup_style"/>
+                    android:fitsSystemWindows="true"
+                    />
 
-            </LinearLayout>
 
+            </RelativeLayout>
+</LinearLayout>
 
             <!--Customer entry-->
 
@@ -133,13 +139,15 @@
                 android:layout_weight="1"
                 android:textColorHint="@color/textColor"
                 android:background="@drawable/login_edittext_style">
-            <EditText
-                android:id="@+id/customer_name"
+            <AutoCompleteTextView
+                android:id="@+id/Order_customer_name"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 android:hint="@string/customer_name"
                 android:paddingLeft="10dp"
+                android:popupTheme="@color/textColor"
+                android:backgroundTint="@color/textColor"
                 android:paddingStart="10dp"
                 android:textColor="@color/textColor" />
             </android.support.design.widget.TextInputLayout>
@@ -167,6 +175,7 @@
                 android:layout_width="1dp"
                 android:layout_height="8dp"/>
 
+            <!--
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -183,7 +192,7 @@
                 android:paddingStart="10dp"
                 android:textColor="@color/textColor" />
             </android.support.design.widget.TextInputLayout>
-
+          -->
 
             <TextView
                 android:layout_width="match_parent"
@@ -239,7 +248,7 @@
                             android:layout_weight="1"
                             android:textColorHint="@color/textColor"
                             android:background="@drawable/login_edittext_style">
-                        <EditText
+                        <AutoCompleteTextView
                             android:id="@+id/ProductName1"
                             android:layout_width="130sp"
                             android:layout_height="50dp"
@@ -303,6 +312,7 @@
                             android:layout_height="50dp"
                             android:hint="Trade price"
                             android:gravity="center"
+                            android:editable="false"
                             android:textColor="@color/textColor"
                            />
                         </android.support.design.widget.TextInputLayout>
@@ -321,6 +331,7 @@
                             android:layout_height="50dp"
                             android:hint="Trade Value"
                             android:gravity="center"
+                            android:editable="false"
                             android:textColor="@color/textColor"
                             />
                         </android.support.design.widget.TextInputLayout>
@@ -339,6 +350,7 @@
                             android:layout_height="50dp"
                             android:hint="Discount value"
                             android:gravity="center"
+                            android:text="0"
                             android:textColor="@color/textColor"
                             />
                         </android.support.design.widget.TextInputLayout>
@@ -375,9 +387,21 @@
                             android:layout_height="50dp"
                             android:hint="Net amount"
                             android:gravity="center"
+                            android:editable="false"
                             android:textColor="@color/textColor"
                             />
                         </android.support.design.widget.TextInputLayout>
+                        <Space
+                            android:layout_width="5dp"
+                            android:layout_height="5dp"/>
+                        <Button
+                            android:id="@+id/calculate1"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:background="@drawable/ic_add_circle_black_48dp"/>
+
                         <Space
                             android:layout_width="5dp"
                             android:layout_height="5dp"/>
@@ -410,7 +434,7 @@
                             android:layout_weight="1"
                             android:textColorHint="@color/textColor"
                             android:background="@drawable/login_edittext_style">
-                        <EditText
+                        <AutoCompleteTextView
                             android:id="@+id/ProductName2"
                             android:layout_width="130sp"
                             android:layout_height="50dp"
@@ -552,9 +576,8 @@
                             android:id="@+id/b2"
                             android:layout_width="50sp"
                             android:layout_height="50dp"
-                            android:hint="M1"
                             android:gravity="center"
-                            android:background="@drawable/ic_action_add"/>
+                            android:background="@drawable/ic_add_circle_black_48dp"/>
                     </LinearLayout>
 
                     <!-- 3rd entry-->
@@ -573,7 +596,7 @@
                             android:layout_weight="1"
                             android:textColorHint="@color/textColor"
                             android:background="@drawable/login_edittext_style">
-                        <EditText
+                        <AutoCompleteTextView
                             android:id="@+id/ProductName3"
                             android:layout_width="130sp"
                             android:layout_height="50dp"
@@ -711,9 +734,8 @@
                             android:id="@+id/b3"
                             android:layout_width="50sp"
                             android:layout_height="50dp"
-
                             android:gravity="center"
-                            android:background="@drawable/ic_action_add"/>
+                            android:background="@drawable/ic_add_circle_black_48dp"/>
                     </LinearLayout>
 
                     <!-- 4th entry-->
@@ -732,7 +754,7 @@
                             android:layout_weight="1"
                             android:textColorHint="@color/textColor"
                             android:background="@drawable/login_edittext_style">
-                        <EditText
+                        <AutoCompleteTextView
                             android:id="@+id/ProductName4"
                             android:layout_width="130sp"
                             android:layout_height="50dp"
@@ -870,9 +892,8 @@
                             android:id="@+id/b4"
                             android:layout_width="50sp"
                             android:layout_height="50dp"
-                            android:hint="M"
                             android:gravity="center"
-                            android:background="@drawable/ic_action_add"/>
+                            android:background="@drawable/ic_add_circle_black_48dp"/>
                     </LinearLayout>
 
                     <!-- 5th entry-->
@@ -891,7 +912,7 @@
                             android:layout_weight="1"
                             android:textColorHint="@color/textColor"
                             android:background="@drawable/login_edittext_style">
-                        <EditText
+                        <AutoCompleteTextView
                             android:id="@+id/ProductName5"
                             android:layout_width="130sp"
                             android:layout_height="50dp"
@@ -1028,9 +1049,8 @@
                             android:id="@+id/b5"
                             android:layout_width="50sp"
                             android:layout_height="50dp"
-                            android:hint="M"
                             android:gravity="center"
-                            android:background="@drawable/ic_action_add"/>
+                            android:background="@drawable/ic_add_circle_black_48dp"/>
                     </LinearLayout>
 
                     <!-- 6th entry-->
@@ -1049,7 +1069,7 @@
                             android:layout_weight="1"
                             android:textColorHint="@color/textColor"
                             android:background="@drawable/login_edittext_style">
-                        <EditText
+                        <AutoCompleteTextView
                             android:id="@+id/ProductName6"
                             android:layout_width="130sp"
                             android:layout_height="50dp"
@@ -1186,9 +1206,8 @@
                             android:id="@+id/b6"
                             android:layout_width="50sp"
                             android:layout_height="50dp"
-                            android:hint="M"
                             android:gravity="center"
-                            android:background="@drawable/ic_action_add"/>
+                            android:background="@drawable/ic_add_circle_black_48dp"/>
                     </LinearLayout>
 
                     <!-- 7th entry-->
@@ -1208,7 +1227,7 @@
                             android:textColorHint="@color/textColor"
                             android:background="@drawable/login_edittext_style">
 
-                        <EditText
+                        <AutoCompleteTextView
                             android:id="@+id/ProductName7"
                             android:layout_width="130sp"
                             android:layout_height="50dp"
@@ -1346,9 +1365,8 @@
                             android:id="@+id/b7"
                             android:layout_width="50sp"
                             android:layout_height="50dp"
-                            android:hint="M"
                             android:gravity="center"
-                            android:background="@drawable/ic_action_add"/>
+                            android:background="@drawable/ic_add_circle_black_48dp"/>
                     </LinearLayout>
 
                     <!-- 8th entry-->
@@ -1367,7 +1385,7 @@
                             android:layout_weight="1"
                             android:textColorHint="@color/textColor"
                             android:background="@drawable/login_edittext_style">
-                        <EditText
+                        <AutoCompleteTextView
                             android:id="@+id/ProductName8"
                             android:layout_width="130sp"
                             android:layout_height="50dp"
@@ -1504,9 +1522,8 @@
                             android:id="@+id/b8"
                             android:layout_width="50sp"
                             android:layout_height="50dp"
-                            android:hint="M"
                             android:gravity="center"
-                            android:background="@drawable/ic_action_add"/>
+                            android:background="@drawable/ic_add_circle_black_48dp"/>
                     </LinearLayout>
 
                     <!-- 9th entry-->
@@ -1525,13 +1542,13 @@
                             android:layout_weight="1"
                             android:textColorHint="@color/textColor"
                             android:background="@drawable/login_edittext_style">
-                        <EditText
+                        <AutoCompleteTextView
                             android:id="@+id/ProductName9"
                             android:layout_width="130sp"
                             android:layout_height="50dp"
                             android:hint="Product Name"
                             android:gravity="center"
-                            android:textColorHint="@color/textColor"/>
+                            android:textColor="@color/textColor"/>
                         </android.support.design.widget.TextInputLayout>
                         <Space
                             android:layout_width="5dp"
@@ -1662,9 +1679,8 @@
                             android:id="@+id/b9"
                             android:layout_width="50sp"
                             android:layout_height="50dp"
-                            android:hint="M"
                             android:gravity="center"
-                            android:background="@drawable/ic_action_add"/>
+                            android:background="@drawable/ic_add_circle_black_48dp"/>
                     </LinearLayout>
 
                     <!-- 10th entry-->
@@ -1683,13 +1699,13 @@
                             android:layout_weight="1"
                             android:textColorHint="@color/textColor"
                             android:background="@drawable/login_edittext_style">
-                        <EditText
+                        <AutoCompleteTextView
                             android:id="@+id/ProductName10"
                             android:layout_width="130sp"
                             android:layout_height="50dp"
                             android:hint="Product Name"
                             android:gravity="center"
-                            android:textColorHint="@color/textColor"/>
+                            android:textColor="@color/textColor"/>
                         </android.support.design.widget.TextInputLayout>
                         <Space
                             android:layout_width="5dp"
@@ -1821,7 +1837,7 @@
                             android:layout_width="50sp"
                             android:layout_height="50dp"
                             android:gravity="center"
-                            android:background="@drawable/ic_action_add"/>
+                            android:background="@drawable/ic_add_circle_black_48dp"/>
                     </LinearLayout>
 
 
