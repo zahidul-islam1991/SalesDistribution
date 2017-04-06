@@ -9,6 +9,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.csi.salesdistribution.Customer_Resistration;
+import com.csi.salesdistribution.Model.Customer;
 import com.csi.salesdistribution.Model.Product;
 import com.csi.salesdistribution.SuggestGetSet;
 
@@ -91,7 +92,14 @@ public class Util {
         return null;
     }
 
-
+    public static Customer getCustomerByName(String productName) {
+        for (Customer customer: Constants.customerList) {
+            if (customer.getName().equals(productName)) {
+                return customer;
+            }
+        }
+        return null;
+    }
 
 
     }

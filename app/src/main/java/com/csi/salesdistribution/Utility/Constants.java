@@ -11,6 +11,7 @@ public class Constants {
     public static final String STATUS = "status";
     public static final String MESSAGE = "message";
     public static ArrayList<com.csi.salesdistribution.Model.Product> productList = new ArrayList<>();
+    public static ArrayList<com.csi.salesdistribution.Model.Customer> customerList = new ArrayList<>();
 
 
     public class Api{
@@ -18,6 +19,7 @@ public class Constants {
         public static final String API_CUSTOMER = "http://192.168.0.36/api/v1/customer";
         public  static final String API_CUSTOMERAuto="http://192.168.0.36/api/v1/customer/autocomplete?q=";
         public  static final String API_PRODUCT="http://192.168.0.36/api/v1/product/autocomplete?q=";
+        public static final String API_ORDER_ENTRY = "http://192.168.0.36/api/v1/order";
     }
 
     public class LogInFields{
@@ -37,5 +39,14 @@ public class Constants {
         public static final String VAT = "vat";
         public static final String TRADE_VALUE = "trade_value";
         public static final String PACK_SIZE ="pack_size";
+    }
+
+    public class Customer{
+        public static final String CUSTOMER_ID = "id";
+        public static final String NAME = "name";
+        public static final String PHONE = "phone";
+    }
+    public class StaticValue {
+        public static final String VAT = "15";
     }
 }

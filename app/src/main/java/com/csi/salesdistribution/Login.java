@@ -2,7 +2,9 @@ package com.csi.salesdistribution;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
@@ -58,8 +60,13 @@ public class Login extends AppCompatActivity {
     public static final String NAME="NAME";
     public static final String API_TOKEN="APITOKEN";
     public static final String ID="ID";
+   //sharedpreference
+    public static final String PREFS_NAME = "LoginPrefs";
+
+
     String username;
     String password;
+    SharedPreferences sharedPreferences;
 
 
     @Override
@@ -68,7 +75,12 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         initUI();
 
-
+        //sharedPreference
+        sharedPreferences=getSharedPreferences("login", MODE_PRIVATE);
+        if(sharedPreferences.contains(USER_NAME) && sharedPreferences.contains(EMP_CODE)){
+            startActivity(new Intent(Login.this,Dashboard.class));
+            finish();   //finish current activity
+        }
         // login button
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +89,7 @@ public class Login extends AppCompatActivity {
                 //startActivity(i);
                 username = editTextUserName.getText().toString();
                 password = editTextPassword.getText().toString();
+
 
                 Log.d("username",username);
                 if (TextUtils.isEmpty(username)) {
@@ -188,15 +201,28 @@ public class Login extends AppCompatActivity {
 
                         loadingDialog.dismiss();
                         if (result.equalsIgnoreCase("success")) {
+
                             Intent intent = new Intent(Login.this, Dashboard.class);
-                            Toast toast= Toast.makeText(getApplicationContext(), "Login Successfull", Toast.LENGTH_LONG);
+                            Toast toast= Toast.makeText(getApplicationContext(), "  Login Successfull  ", Toast.LENGTH_LONG);
                             View view=toast.getView();
                             view.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4caf50")));
                             view.setBackgroundResource(R.drawable.toast_style);
                             toast.show();
+                            
+
+                            //sharedPreference
+                            SharedPreferences.Editor editor=sharedPreferences.edit();
+                            editor.putString(USER_NAME, username);
+                            editor.putString(EMP_CODE, empCode);
+                            editor.putString(API_TOKEN, apiToken);
+                            editor.commit();
+                            finish();
+                            startActivity(intent);
+                            //close shared preference
+
                             //Toast.makeText(getApplicationContext(), "Login Successfull", Toast.LENGTH_LONG).show();
                             //intent.putExtra(USER_NAME, username);
-                            Bundle extra=new Bundle();
+                         /*   Bundle extra=new Bundle();
                             extra.putString(USER_NAME, username);
                             extra.putString(EMP_CODE, empCode);
                             extra.putString(NAME, name);
@@ -204,13 +230,18 @@ public class Login extends AppCompatActivity {
                             intent.putExtras(extra);
                             finish();
                             startActivity(intent);
-
+                        */
 
 
 
 
                         } else {
-                            Toast.makeText(getApplicationContext(), "Invalid User Name or Password", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getApplicationContext(), "Invalid User Name or Password", Toast.LENGTH_LONG).show();
+                            Toast toast= Toast.makeText(getApplicationContext(), " Invalid User Name or Password ", Toast.LENGTH_LONG);
+                            View view=toast.getView();
+                            view.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ff0000")));
+                            view.setBackgroundResource(R.drawable.toast_style_error);
+                            toast.show();
                         }
                     }
                 }

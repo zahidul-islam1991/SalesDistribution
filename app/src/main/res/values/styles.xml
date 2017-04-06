@@ -13,6 +13,15 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
     <style name="Base.V7.Theme.AppCompat." parent="Base.V7.Theme.AppCompat." />
+    <!-- dialog background -->
+    <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!--buttons color-->
+        <item name="colorAccent">@color/md_green_400</item>
+        <!--title and message color-->
+        <item name="android:textColorPrimary">@color/textColor</item>
+        <!--dialog background-->
+        <item name="android:windowBackground">@drawable/dialog</item>
+    </style>
 
 
 </resources>

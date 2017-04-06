@@ -1,6 +1,10 @@
 package com.csi.salesdistribution;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -25,6 +29,8 @@ public class Dashboard extends AppCompatActivity
     TextView textViewEmployeCode;
     TextView textView;
     public static String name="text";
+    Context context=this;
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,15 +46,23 @@ public class Dashboard extends AppCompatActivity
         //Intent intent=getIntent();
         //String username=intent.getStringExtra(Login.USER_NAME);
 
-        Intent intent = getIntent();
+       /* Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         String username_string = extras.getString(Login.USER_NAME);
         String empCode=extras.getString(Login.EMP_CODE);
         String name=extras.getString(Login.NAME);
         String apiToken=extras.getString(Login.API_TOKEN);
         String id=extras.getString(Login.ID);
-
+*/
+        sharedPreferences=getSharedPreferences("login", MODE_PRIVATE);
+        String username,apiToken,empCode;
+        username=sharedPreferences.getString(Login.USER_NAME, "");
+        apiToken=sharedPreferences.getString(Login.API_TOKEN,"");
+        empCode=sharedPreferences.getString(Login.EMP_CODE,"");
         textView.setText(apiToken);
+
+
+       // textView.setText(apiToken);
        // textView1.setText("WELCOME"+" "+empCode);
 
 
@@ -79,20 +93,22 @@ public class Dashboard extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        navigationView.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#123456")));
+        navigationView.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#888888")));
 
         View header = navigationView.getHeaderView(0);
         textviewSalesPerson = (TextView) header.findViewById(R.id.salesPersonName);
         textViewEmployeCode= (TextView) header.findViewById(R.id.employe_code);
         Intent i=getIntent();
-        String sals=intent.getStringExtra(Login.USER_NAME);
+        //String sals=intent.getStringExtra(Login.USER_NAME);
 
-        String empcode=extras.getString(Login.EMP_CODE);
+        //String empcode=extras.getString(Login.EMP_CODE);
         //String api=extras.getString(Login.API_TOKEN);
 
 
-        textviewSalesPerson.setText(username_string);
-        textViewEmployeCode.setText(empcode);
+        //textviewSalesPerson.setText(username_string);
+       // textViewEmployeCode.setText(empcode);
+        textviewSalesPerson.setText(username);
+        textViewEmployeCode.setText(empCode);
 
 
 
@@ -104,7 +120,35 @@ public class Dashboard extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            //super.onBackPressed();
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                    context, R.style.MyDialogTheme);
+
+            // set title
+            alertDialogBuilder.setTitle(R.string.exit);
+
+            // set dialog message/icon etc
+            alertDialogBuilder.setMessage(R.string.exitMessage)
+                    .setCancelable(false)
+                    //.setIcon(R.drawable.logout_icon)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            finish();
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            //  Action for 'NO' Button
+                            dialog.cancel();
+                        }
+                    });
+
+
+            // create alert dialog
+            AlertDialog alertDialog = alertDialogBuilder.create();
+
+            // show it
+            alertDialog.show();
         }
     }
 
@@ -158,7 +202,42 @@ public class Dashboard extends AppCompatActivity
            
         } else if (id == R.id.nav_manage) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.logout) {
+
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                    context, R.style.MyDialogTheme);
+
+            // set title
+            alertDialogBuilder.setTitle(R.string.logout);
+
+            // set dialog message/icon etc
+            alertDialogBuilder.setMessage(R.string.logoutMessage)
+                    .setCancelable(false)
+                    .setIcon(R.drawable.logout_icon)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            sharedPreferences=getSharedPreferences("login", MODE_PRIVATE);
+                            SharedPreferences.Editor editor=sharedPreferences.edit();
+                            editor.clear();
+                            editor.commit();
+                            startActivity(new Intent(Dashboard.this,Login.class));
+                            finish();
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            //  Action for 'NO' Button
+                            dialog.cancel();
+                        }
+                    });
+
+
+            // create alert dialog
+            AlertDialog alertDialog = alertDialogBuilder.create();
+
+            // show it
+            alertDialog.show();
+
 
         } else if (id == R.id.nav_send) {
 

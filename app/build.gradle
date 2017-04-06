@@ -5,7 +5,7 @@ android {
     buildToolsVersion "24.0.2"
     defaultConfig {
         applicationId "com.csi.salesdistribution"
-        minSdkVersion 9
+        minSdkVersion 11
         targetSdkVersion 25
         useLibrary 'org.apache.http.legacy'
         versionCode 1
