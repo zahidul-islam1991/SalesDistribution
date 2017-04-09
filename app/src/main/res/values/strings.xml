@@ -44,6 +44,8 @@
     <string name="logoutMessage">Logout current user!!!!</string>
     <string name="exit">Exit</string>
     <string name="exitMessage">Do you want to close this application??</string>
+    <string name="connectionTitle">Unable to connect</string>
+    <string name="connectinErrorMessage">You need internet connection for this app. Please turn on mobile network or Wi-Fi in Settings &amp; open the app again</string>
 
 
     <!-- testing-->

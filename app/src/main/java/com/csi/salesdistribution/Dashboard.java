@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.annotation.ColorRes;
 import android.support.design.widget.FloatingActionButton;
@@ -22,6 +23,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Dashboard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -35,6 +37,7 @@ public class Dashboard extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+        ConnectivityManager connectivityManager= (ConnectivityManager) getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Home");
         setSupportActionBar(toolbar);
@@ -64,6 +67,47 @@ public class Dashboard extends AppCompatActivity
 
        // textView.setText(apiToken);
        // textView1.setText("WELCOME"+" "+empCode);
+
+        //valid internet connection
+        if ( connectivityManager.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED ||
+                connectivityManager.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTING ||
+                connectivityManager.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTING ||
+                connectivityManager.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED ) {
+            Toast toast = Toast.makeText(getApplicationContext(), "  Connected  ", Toast.LENGTH_LONG);
+            View view = toast.getView();
+            view.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4caf50")));
+            view.setBackgroundResource(R.drawable.toast_style);
+            toast.show();
+        }
+
+       else if( connectivityManager.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.DISCONNECTED ||
+                connectivityManager.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.DISCONNECTED  ){
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                    context, R.style.MyDialogTheme);
+
+            // set title
+            alertDialogBuilder.setTitle(R.string.connectionTitle);
+
+            // set dialog message/icon etc
+            alertDialogBuilder.setMessage(R.string.connectinErrorMessage)
+                    .setCancelable(false)
+                    //.setIcon(R.drawable.logout_icon)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            finish();
+
+                        }
+                    });
+
+
+
+            // create alert dialog
+            AlertDialog alertDialog = alertDialogBuilder.create();
+
+            // show it
+            alertDialog.show();
+
+        }
 
 
 
