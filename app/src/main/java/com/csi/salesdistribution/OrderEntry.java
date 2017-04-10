@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -84,6 +85,7 @@ public class OrderEntry extends AppCompatActivity {
       ArrayList<Customer> customerArrayList = new ArrayList<Customer>();
       String rate,quan;
       String defaultValue="0";
+      String pattern = "^([a-zA-Z ]*)$";
 
 
     @Override
@@ -482,7 +484,12 @@ public class OrderEntry extends AppCompatActivity {
                                  @Override
                                  public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                                      quan=editTextQuantity1.getText().toString();
+                                     quan=editTextQuantity1.getText().toString();
+                                     if (quan.matches(pattern)){
+                                         editTextQuantity1.setError("Enter valid quantity");
+                                         editTextQuantity1.requestFocus();
+                                         return;
+                                     }
                                      if(quan.equals(defaultValue)){
                                          editTextQuantity1.setError("Enter valid quantity");
                                          editTextQuantity1.requestFocus();
@@ -528,6 +535,11 @@ public class OrderEntry extends AppCompatActivity {
                                  public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                                      String dis=editTextDiscount1.getText().toString();
                                      dis = (dis.isEmpty()) ? "0" :dis;
+                                     if (dis.matches(pattern)){
+                                         editTextDiscount1.setError("Invalid");
+                                         editTextDiscount1.requestFocus();
+                                         return;
+                                     }
                                      discount1=Double.parseDouble(dis);
 
                                      //double priceithVAT,netTotal;
@@ -575,6 +587,11 @@ public class OrderEntry extends AppCompatActivity {
                         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
                             String quan=editTextQuantity2.getText().toString();
+                            if (quan.matches(pattern)){
+                                editTextQuantity2.setError("Enter valid quantity");
+                                editTextQuantity2.requestFocus();
+                                return;
+                            }
                             if(quan.equals(defaultValue)){
                                 editTextQuantity2.setError("Enter valid quantity");
                                 editTextQuantity2.requestFocus();
@@ -622,6 +639,11 @@ public class OrderEntry extends AppCompatActivity {
                         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                             String dis=editTextDiscount2.getText().toString();
                             dis = (dis.isEmpty()) ? "0" :dis;
+                            if (dis.matches(pattern)){
+                                editTextDiscount2.setError("Invalid");
+                                editTextDiscount2.requestFocus();
+                                return;
+                            }
                             discount2=Double.parseDouble(dis);
                             //double priceithVAT,netTotal;
                             netTotal=pricewithVAT-discount2;
@@ -667,6 +689,11 @@ public class OrderEntry extends AppCompatActivity {
                         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
                             String quan=editTextQuantity3.getText().toString();
+                            if (quan.matches(pattern)){
+                                editTextQuantity3.setError("Enter valid quantity");
+                                editTextQuantity3.requestFocus();
+                                return;
+                            }
                             if(quan.equals(defaultValue)){
                                 editTextQuantity3.setError("Enter valid quantity");
                                 editTextQuantity3.requestFocus();
@@ -714,6 +741,11 @@ public class OrderEntry extends AppCompatActivity {
                         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                             String dis=editTextDiscount3.getText().toString();
                             dis = (dis.isEmpty()) ? "0" :dis;
+                            if (dis.matches(pattern)){
+                                editTextDiscount3.setError("Invalid");
+                                editTextDiscount3.requestFocus();
+                                return;
+                            }
                              discount3=Double.parseDouble(dis);
                             //double priceithVAT,netTotal;
                             netTotal=pricewithVAT-discount3;
@@ -762,6 +794,11 @@ public class OrderEntry extends AppCompatActivity {
                         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
                             String quan=editTextQuantity4.getText().toString();
+                            if (quan.matches(pattern)){
+                                editTextQuantity4.setError("Enter valid quantity");
+                                editTextQuantity4.requestFocus();
+                                return;
+                            }
                             if(quan.equals(defaultValue)){
                                 editTextQuantity4.setError("Enter valid quantity");
                                 editTextQuantity4.requestFocus();
@@ -809,8 +846,12 @@ public class OrderEntry extends AppCompatActivity {
                         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                             String dis=editTextDiscount4.getText().toString();
                             dis = (dis.isEmpty()) ? "0" :dis;
+                            if (dis.matches(pattern)){
+                                editTextDiscount4.setError("Invalid");
+                                editTextDiscount4.requestFocus();
+                                return;
+                            }
                              discount4=Double.parseDouble(dis);
-                            //double priceithVAT,netTotal;
                             netTotal=pricewithVAT-discount4;
                             editTextNetAmount4.setText(String.valueOf(netTotal));
                             //resut
@@ -857,6 +898,11 @@ public class OrderEntry extends AppCompatActivity {
                         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
                             String quan=editTextQuantity5.getText().toString();
+                            if (quan.matches(pattern)){
+                                editTextQuantity5.setError("Enter valid quantity");
+                                editTextQuantity5.requestFocus();
+                                return;
+                            }
                             if(quan.equals(defaultValue)){
                                 editTextQuantity5.setError("Enter valid quantity");
                                 editTextQuantity5.requestFocus();
@@ -904,8 +950,12 @@ public class OrderEntry extends AppCompatActivity {
                         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                             String dis=editTextDiscount5.getText().toString();
                             dis = (dis.isEmpty()) ? "0" :dis;
+                            if (dis.matches(pattern)){
+                                editTextDiscount5.setError("Invalid");
+                                editTextDiscount5.requestFocus();
+                                return;
+                            }
                             discount5=Double.parseDouble(dis);
-                            //double priceithVAT,netTotal;
                             netTotal=pricewithVAT-discount5;
                             editTextNetAmount5.setText(String.valueOf(netTotal));
                             //resut
@@ -951,6 +1001,11 @@ public class OrderEntry extends AppCompatActivity {
                         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
                             String quan=editTextQuantity6.getText().toString();
+                            if (quan.matches(pattern)){
+                                editTextQuantity6.setError("Enter valid quantity");
+                                editTextQuantity6.requestFocus();
+                                return;
+                            }
                             if(quan.equals(defaultValue)){
                                 editTextQuantity6.setError("Enter valid quantity");
                                 editTextQuantity6.requestFocus();
@@ -998,8 +1053,12 @@ public class OrderEntry extends AppCompatActivity {
                         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                             String dis=editTextDiscount6.getText().toString();
                             dis = (dis.isEmpty()) ? "0" :dis;
-                             discount6=Double.parseDouble(dis);
-                            //double priceithVAT,netTotal;
+                            if (dis.matches(pattern)){
+                                editTextDiscount6.setError("Invalid");
+                                editTextDiscount6.requestFocus();
+                                return;
+                            }
+                            discount6=Double.parseDouble(dis);
                             netTotal=pricewithVAT-discount6;
                             editTextNetAmount6.setText(String.valueOf(netTotal));
                             //resut
@@ -1045,6 +1104,11 @@ public class OrderEntry extends AppCompatActivity {
                         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
                             String quan=editTextQuantity7.getText().toString();
+                            if (quan.matches(pattern)){
+                                editTextQuantity7.setError("Enter valid quantity");
+                                editTextQuantity7.requestFocus();
+                                return;
+                            }
                             if(quan.equals(defaultValue)){
                                 editTextQuantity7.setError("Enter valid quantity");
                                 editTextQuantity7.requestFocus();
@@ -1092,8 +1156,12 @@ public class OrderEntry extends AppCompatActivity {
                         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                             String dis=editTextDiscount7.getText().toString();
                             dis = (dis.isEmpty()) ? "0" :dis;
+                            if (dis.matches(pattern)){
+                                editTextDiscount7.setError("Invalid");
+                                editTextDiscount7.requestFocus();
+                                return;
+                            }
                             discount7=Double.parseDouble(dis);
-                            //double priceithVAT,netTotal;
                             netTotal=pricewithVAT-discount7;
                             editTextNetAmount7.setText(String.valueOf(netTotal));
                             //resut
@@ -1139,6 +1207,11 @@ public class OrderEntry extends AppCompatActivity {
                         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
                             String quan=editTextQuantity8.getText().toString();
+                            if (quan.matches(pattern)){
+                                editTextQuantity8.setError("Enter valid quantity");
+                                editTextQuantity8.requestFocus();
+                                return;
+                            }
                             if(quan.equals(defaultValue)){
                                 editTextQuantity8.setError("Enter valid quantity");
                                 editTextQuantity8.requestFocus();
@@ -1186,8 +1259,12 @@ public class OrderEntry extends AppCompatActivity {
                         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                             String dis=editTextDiscount8.getText().toString();
                             dis = (dis.isEmpty()) ? "0" :dis;
+                            if (dis.matches(pattern)){
+                                editTextDiscount8.setError("Invalid");
+                                editTextDiscount8.requestFocus();
+                                return;
+                            }
                              discount8=Double.parseDouble(dis);
-                            //double priceithVAT,netTotal;
                             netTotal=pricewithVAT-discount8;
                             editTextNetAmount8.setText(String.valueOf(netTotal));
                             //resut
@@ -1234,6 +1311,11 @@ public class OrderEntry extends AppCompatActivity {
                         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
                             String quan=editTextQuantity9.getText().toString();
+                            if (quan.matches(pattern)){
+                                editTextQuantity9.setError("Enter valid quantity");
+                                editTextQuantity9.requestFocus();
+                                return;
+                            }
                             if(quan.equals(defaultValue)){
                                 editTextQuantity9.setError("Enter valid quantity");
                                 editTextQuantity9.requestFocus();
@@ -1281,8 +1363,12 @@ public class OrderEntry extends AppCompatActivity {
                         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                             String dis=editTextDiscount9.getText().toString();
                             dis = (dis.isEmpty()) ? "0" :dis;
+                            if (dis.matches(pattern)){
+                                editTextDiscount9.setError("Invalid");
+                                editTextDiscount9.requestFocus();
+                                return;
+                            }
                              discount9=Double.parseDouble(dis);
-                            //double priceithVAT,netTotal;
                             netTotal=pricewithVAT-discount9;
                             editTextNetAmount9.setText(String.valueOf(netTotal));
                             //resut
@@ -1328,6 +1414,11 @@ public class OrderEntry extends AppCompatActivity {
                         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
                             String quan=editTextQuantity10.getText().toString();
+                            if (quan.matches(pattern)){
+                                editTextQuantity10.setError("Enter valid quantity");
+                                editTextQuantity10.requestFocus();
+                                return;
+                            }
                             if(quan.equals(defaultValue)){
                                 editTextQuantity10.setError("Enter valid quantity");
                                 editTextQuantity10.requestFocus();
@@ -1375,8 +1466,12 @@ public class OrderEntry extends AppCompatActivity {
                         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                             String dis=editTextDiscount10.getText().toString();
                             dis = (dis.isEmpty()) ? "0" :dis;
+                            if (dis.matches(pattern)){
+                                editTextDiscount10.setError("Invalid");
+                                editTextDiscount10.requestFocus();
+                                return;
+                            }
                              discount10=Double.parseDouble(dis);
-                            //double priceithVAT,netTotal;
                             netTotal=pricewithVAT-discount10;
                             editTextNetAmount10.setText(String.valueOf(netTotal));
                             //resut

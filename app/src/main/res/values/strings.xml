@@ -39,6 +39,8 @@
     <string name="order_date">Order Date</string>
     <string name="calculate">Calculate</string>
     <string name="save">SAVE</string>
+    <string name="quantity">Quantity</string>
+    <string name="discount">Discount</string>
     <string name="TotalProductEntry">Total Product Entry</string>
     <string name="logout">Logout</string>
     <string name="logoutMessage">Logout current user!!!!</string>

@@ -122,6 +122,7 @@ public class Customer_Resistration extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Toast.makeText(Customer_Resistration.this,response,Toast.LENGTH_LONG).show();
+                        finish();
 
                     }
                 }, new Response.ErrorListener() {
@@ -171,6 +172,7 @@ public class Customer_Resistration extends AppCompatActivity {
                         params.put("phone", mobileNo);
                         params.put("post_code", postCode);
                         return params;
+
                     }
                 };
                 requestQueue.add(stringRequest);
