@@ -11,7 +11,9 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ddd">
+        android:background="#ddd"
+        android:scrollbarSize="3.5dp"
+        android:scrollbarThumbVertical="@color/md_green_400">
 
         <LinearLayout
 
@@ -42,7 +44,6 @@
                     android:hint="@string/order_date"
                     android:gravity="center"
                     android:editable="false"
-                    android:inputType="date"
                     android:textColor="@color/textColor"
                     android:textSize="18dp"
                    />
@@ -64,7 +65,6 @@
                     android:gravity="center"
                     android:hint="@string/delivery_date"
                     android:editable="false"
-                    android:inputType="date"
                     android:textColor="@color/textColor"
                     android:textSize="18dp"
                     />
@@ -76,13 +76,15 @@
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/edittext_style"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            >
 
         <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp">
+                android:layout_marginStart="10dp"
+            >
 
                 <TextView
                     android:id="@+id/payment"
@@ -100,14 +102,15 @@
                     android:backgroundTint="@color/md_green_500"
                     android:scrollbarSize="4dp"
                     android:fitsSystemWindows="true"
-                    />
+                    android:spinnerMode="dialog"
+                    android:dropDownVerticalOffset="0dp"
+                    android:textColor="@color/white"/>
 
 
             </RelativeLayout>
 </LinearLayout>
 
             <!--Customer entry-->
-
 
             <TextView
                 android:layout_width="match_parent"
@@ -151,7 +154,8 @@
                 android:popupTheme="@color/textColor"
                 android:backgroundTint="@color/textColor"
                 android:paddingStart="10dp"
-                android:textColor="@color/textColor" />
+                android:textColor="@color/textColor"
+                />
             </android.support.design.widget.TextInputLayout>
             <Space
                 android:layout_width="1dp"
@@ -169,6 +173,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 android:hint="@string/market"
+                android:editable="false"
                 android:paddingLeft="10dp"
                 android:paddingStart="10dp"
                 android:textColor="@color/textColor" />
@@ -243,18 +248,27 @@
                 <RelativeLayout
                     android:id="@+id/ProductrelativeLayout"
                     android:layout_width="fill_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="130dp"
                     android:paddingLeft="0dp"
                     android:scrollbars="vertical"
                     android:paddingRight="0dp"
                     >
                    <!-- 1st entry-->
-                    <LinearLayout
+                    <RelativeLayout
                         android:id="@+id/l1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp">
+                        android:layout_marginBottom="10dp"
+                        android:paddingLeft="0dp"
+                        android:paddingRight="0dp"
+                        android:background="@drawable/edittext_style">
 
+                    <LinearLayout
+                        android:id="@+id/first"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:paddingLeft="0dp">
                         <android.support.design.widget.TextInputLayout
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
@@ -287,28 +301,9 @@
                             android:hint="@string/quantity"
                             android:gravity="center"
                             android:textColor="@color/textColor"
-                            />
+                            android:background="@drawable/login_edittext_style"/>
                         </android.support.design.widget.TextInputLayout>
-                        <Space
-                            android:layout_width="5dp"
-                            android:layout_height="5dp"/>
 
-                        <android.support.design.widget.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:layout_weight="1"
-                            android:textColorHint="@color/textColor"
-                            android:background="@drawable/login_edittext_style">
-
-                        <EditText
-                            android:id="@+id/pack1"
-                            android:layout_width="130sp"
-                            android:layout_height="50dp"
-                            android:hint="Pack"
-                            android:gravity="center"
-                            android:textColor="@color/textColor"
-                            />
-                        </android.support.design.widget.TextInputLayout>
                         <Space
                             android:layout_width="5dp"
                             android:layout_height="5dp"/>
@@ -318,17 +313,43 @@
                             android:layout_weight="1"
                             android:textColorHint="@color/textColor"
                             android:background="@drawable/login_edittext_style">
-
-                        <EditText
-                            android:id="@+id/tradePrice1"
-                            android:layout_width="130sp"
-                            android:layout_height="50dp"
-                            android:hint="Trade price"
-                            android:gravity="center"
-                            android:editable="false"
-                            android:textColor="@color/textColor"
-                           />
+                            <EditText
+                                android:id="@+id/discountValue1"
+                                android:layout_width="130sp"
+                                android:layout_height="50dp"
+                                android:hint="Discount value"
+                                android:gravity="center"
+                                android:text="0"
+                                android:editable="false"
+                                android:textColor="@color/textColor"
+                                />
                         </android.support.design.widget.TextInputLayout>
+
+                        <Space
+                            android:layout_width="5dp"
+                            android:layout_height="5dp"/>
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:textColorHint="@color/textColor"
+                            android:background="@drawable/login_edittext_style">
+                            <EditText
+                                android:id="@+id/vat1"
+                                android:layout_width="130sp"
+                                android:layout_height="50dp"
+                                android:hint="VAT"
+                                android:gravity="center"
+                                android:editable="false"
+                                android:textColor="@color/textColor"
+                                />
+                        </android.support.design.widget.TextInputLayout>
+
+
+
+                        </LinearLayout>
+
+                        <!--
                         <Space
                             android:layout_width="5dp"
                             android:layout_height="5dp"/>
@@ -408,6 +429,7 @@
                             android:layout_width="5dp"
                             android:layout_height="5dp"/>
 
+
                         <Button
                             android:id="@+id/b1"
                             android:layout_width="50dp"
@@ -416,9 +438,1961 @@
                             android:padding="10dp"
                             android:background="@drawable/ic_add_circle_black_48dp"/>
 
-                        <!-- 2nd entry-->
+                            -->
 
+
+                    <Space
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        />
+                    <LinearLayout
+                        android:id="@+id/l111"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_below="@+id/first"
+                        android:paddingLeft="0dp"
+                        android:paddingRight="0dp">
+
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:textColorHint="@color/textColor"
+                            android:background="@drawable/login_edittext_style">
+
+                            <EditText
+                                android:id="@+id/pack1"
+                                android:layout_width="130sp"
+                                android:layout_height="50dp"
+                                android:hint="Pack"
+                                android:gravity="center"
+                                android:editable="false"
+                                android:textColor="@color/textColor"
+                                />
+                        </android.support.design.widget.TextInputLayout>
+
+
+                        <Space
+                            android:layout_width="5dp"
+                            android:layout_height="5dp"/>
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:textColorHint="@color/textColor"
+                            android:background="@drawable/login_edittext_style">
+
+                            <EditText
+                                android:id="@+id/tradePrice1"
+                                android:layout_width="130sp"
+                                android:layout_height="50dp"
+                                android:hint="Trade price"
+                                android:gravity="center"
+                                android:editable="false"
+                                android:textColor="@color/textColor"
+                                />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <Space
+                            android:layout_width="5dp"
+                            android:layout_height="5dp"/>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:textColorHint="@color/textColor"
+                            android:background="@drawable/login_edittext_style">
+                            <EditText
+                                android:id="@+id/tradeValue1"
+                                android:layout_width="130sp"
+                                android:layout_height="50dp"
+                                android:hint="Trade Value"
+                                android:gravity="center"
+                                android:editable="false"
+                                android:textColor="@color/textColor"
+                                />
+                        </android.support.design.widget.TextInputLayout>
+
+
+
+                        <Space
+                            android:layout_width="5dp"
+                            android:layout_height="5dp"/>
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:textColorHint="@color/textColor"
+                            android:background="@drawable/login_edittext_style">
+                            <EditText
+                                android:id="@+id/netAmount1"
+                                android:layout_width="130sp"
+                                android:layout_height="50dp"
+                                android:hint="Net amount"
+                                android:gravity="center"
+                                android:editable="false"
+                                android:textColor="@color/textColor"
+                                />
+                        </android.support.design.widget.TextInputLayout>
+                        <Space
+                            android:layout_width="5dp"
+                            android:layout_height="5dp"/>
+
+
+                        <Button
+                            android:id="@+id/b1"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:background="@drawable/ic_add_circle_black_48dp"/>
                     </LinearLayout>
+
+                    </RelativeLayout>
+
+
+                  <!-- 2nd entry -->
+
+                    <RelativeLayout
+                        android:id="@+id/l2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:paddingLeft="0dp"
+                        android:paddingRight="0dp"
+                        android:visibility="invisible"
+                        android:layout_below="@+id/l1"
+                        android:background="@drawable/edittext_style">
+
+                        <LinearLayout
+                            android:id="@+id/second"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:paddingLeft="0dp">
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <AutoCompleteTextView
+                                    android:id="@+id/ProductName2"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Product Name"
+                                    android:gravity="center"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/quantity2"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="@string/quantity"
+                                    android:gravity="center"
+                                    android:textColor="@color/textColor"
+                                    android:background="@drawable/login_edittext_style"/>
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/discountValue2"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Discount value"
+                                    android:gravity="center"
+                                    android:text="0"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/vat2"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="VAT"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                        </LinearLayout>
+                        <Space
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_below="@+id/second"
+                            android:paddingLeft="0dp"
+                            android:paddingRight="0dp">
+
+
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+
+                                <EditText
+                                    android:id="@+id/pack2"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Pack"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+
+                                <EditText
+                                    android:id="@+id/tradePrice2"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Trade price"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/tradeValue2"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Trade Value"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/netAmount2"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Net amount"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+
+                            <Button
+                                android:id="@+id/b2"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:background="@drawable/ic_add_circle_black_48dp"/>
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <!-- 3rd entry -->
+                    <RelativeLayout
+                        android:id="@+id/l3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:paddingLeft="0dp"
+                        android:paddingRight="0dp"
+                        android:visibility="invisible"
+                        android:layout_below="@+id/l2"
+                        android:background="@drawable/edittext_style">
+
+                        <LinearLayout
+                            android:id="@+id/third"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:paddingLeft="0dp">
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <AutoCompleteTextView
+                                    android:id="@+id/ProductName3"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Product Name"
+                                    android:gravity="center"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/quantity3"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="@string/quantity"
+                                    android:gravity="center"
+                                    android:textColor="@color/textColor"
+                                    android:background="@drawable/login_edittext_style"/>
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/discountValue3"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Discount value"
+                                    android:gravity="center"
+                                    android:text="0"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/vat3"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="VAT"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                        </LinearLayout>
+                        <Space
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_below="@+id/third"
+                            android:paddingLeft="0dp"
+                            android:paddingRight="0dp">
+
+
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+
+                                <EditText
+                                    android:id="@+id/pack3"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Pack"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+
+                                <EditText
+                                    android:id="@+id/tradePrice3"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Trade price"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/tradeValue3"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Trade Value"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/netAmount3"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Net amount"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+
+                            <Button
+                                android:id="@+id/b3"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:background="@drawable/ic_add_circle_black_48dp"/>
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <!-- 4th entry -->
+                    <RelativeLayout
+                        android:id="@+id/l4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:paddingLeft="0dp"
+                        android:paddingRight="0dp"
+                        android:visibility="invisible"
+                        android:layout_below="@+id/l3"
+                        android:background="@drawable/edittext_style">
+
+                        <LinearLayout
+                            android:id="@+id/forth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:paddingLeft="0dp">
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <AutoCompleteTextView
+                                    android:id="@+id/ProductName4"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Product Name"
+                                    android:gravity="center"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/quantity4"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="@string/quantity"
+                                    android:gravity="center"
+                                    android:textColor="@color/textColor"
+                                    android:background="@drawable/login_edittext_style"/>
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/discountValue4"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Discount value"
+                                    android:gravity="center"
+                                    android:text="0"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/vat4"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="VAT"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                        </LinearLayout>
+                        <Space
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_below="@+id/forth"
+                            android:paddingLeft="0dp"
+                            android:paddingRight="0dp">
+
+
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+
+                                <EditText
+                                    android:id="@+id/pack4"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Pack"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+
+                                <EditText
+                                    android:id="@+id/tradePrice4"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Trade price"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/tradeValue4"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Trade Value"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/netAmount4"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Net amount"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+
+                            <Button
+                                android:id="@+id/b4"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:background="@drawable/ic_add_circle_black_48dp"/>
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <!-- 5th entry -->
+                    <RelativeLayout
+                        android:id="@+id/l5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:paddingLeft="0dp"
+                        android:paddingRight="0dp"
+                        android:visibility="invisible"
+                        android:layout_below="@+id/l4"
+                        android:background="@drawable/edittext_style">
+
+                        <LinearLayout
+                            android:id="@+id/fifth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:paddingLeft="0dp">
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <AutoCompleteTextView
+                                    android:id="@+id/ProductName5"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Product Name"
+                                    android:gravity="center"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/quantity5"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="@string/quantity"
+                                    android:gravity="center"
+                                    android:textColor="@color/textColor"
+                                    android:background="@drawable/login_edittext_style"/>
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/discountValue5"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Discount value"
+                                    android:gravity="center"
+                                    android:text="0"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/vat5"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="VAT"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                        </LinearLayout>
+                        <Space
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_below="@+id/fifth"
+                            android:paddingLeft="0dp"
+                            android:paddingRight="0dp">
+
+
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+
+                                <EditText
+                                    android:id="@+id/pack5"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Pack"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+
+                                <EditText
+                                    android:id="@+id/tradePrice5"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Trade price"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/tradeValue5"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Trade Value"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/netAmount5"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Net amount"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+
+                            <Button
+                                android:id="@+id/b5"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:background="@drawable/ic_add_circle_black_48dp"/>
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <!-- 6th entry -->
+                    <RelativeLayout
+                        android:id="@+id/l6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:paddingLeft="0dp"
+                        android:paddingRight="0dp"
+                        android:visibility="invisible"
+                        android:layout_below="@+id/l5"
+                        android:background="@drawable/edittext_style">
+
+                        <LinearLayout
+                            android:id="@+id/sixth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:paddingLeft="0dp">
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <AutoCompleteTextView
+                                    android:id="@+id/ProductName6"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Product Name"
+                                    android:gravity="center"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/quantity6"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="@string/quantity"
+                                    android:gravity="center"
+                                    android:textColor="@color/textColor"
+                                    android:background="@drawable/login_edittext_style"/>
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/discountValue6"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Discount value"
+                                    android:gravity="center"
+                                    android:text="0"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/vat6"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="VAT"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                        </LinearLayout>
+                        <Space
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_below="@+id/sixth"
+                            android:paddingLeft="0dp"
+                            android:paddingRight="0dp">
+
+
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+
+                                <EditText
+                                    android:id="@+id/pack6"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Pack"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+
+                                <EditText
+                                    android:id="@+id/tradePrice6"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Trade price"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/tradeValue6"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Trade Value"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/netAmount6"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Net amount"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+
+                            <Button
+                                android:id="@+id/b6"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:background="@drawable/ic_add_circle_black_48dp"/>
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <!-- 7th entry -->
+                    <RelativeLayout
+                        android:id="@+id/l7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:paddingLeft="0dp"
+                        android:paddingRight="0dp"
+                        android:visibility="invisible"
+                        android:layout_below="@+id/l6"
+                        android:background="@drawable/edittext_style">
+
+                        <LinearLayout
+                            android:id="@+id/seven"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:paddingLeft="0dp">
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <AutoCompleteTextView
+                                    android:id="@+id/ProductName7"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Product Name"
+                                    android:gravity="center"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/quantity7"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="@string/quantity"
+                                    android:gravity="center"
+                                    android:textColor="@color/textColor"
+                                    android:background="@drawable/login_edittext_style"/>
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/discountValue7"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Discount value"
+                                    android:gravity="center"
+                                    android:text="0"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/vat7"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="VAT"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                        </LinearLayout>
+                        <Space
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_below="@+id/seven"
+                            android:paddingLeft="0dp"
+                            android:paddingRight="0dp">
+
+
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+
+                                <EditText
+                                    android:id="@+id/pack7"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Pack"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+
+                                <EditText
+                                    android:id="@+id/tradePrice7"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Trade price"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/tradeValue7"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Trade Value"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/netAmount7"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Net amount"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+
+                            <Button
+                                android:id="@+id/b7"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:background="@drawable/ic_add_circle_black_48dp"/>
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <!-- 8th entry -->
+                    <RelativeLayout
+                        android:id="@+id/l8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:paddingLeft="0dp"
+                        android:paddingRight="0dp"
+                        android:visibility="invisible"
+                        android:layout_below="@+id/l7"
+                        android:background="@drawable/edittext_style">
+
+                        <LinearLayout
+                            android:id="@+id/eighth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:paddingLeft="0dp">
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <AutoCompleteTextView
+                                    android:id="@+id/ProductName8"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Product Name"
+                                    android:gravity="center"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/quantity8"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="@string/quantity"
+                                    android:gravity="center"
+                                    android:textColor="@color/textColor"
+                                    android:background="@drawable/login_edittext_style"/>
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/discountValue8"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Discount value"
+                                    android:gravity="center"
+                                    android:text="0"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/vat8"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="VAT"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                        </LinearLayout>
+                        <Space
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_below="@+id/eighth"
+                            android:paddingLeft="0dp"
+                            android:paddingRight="0dp">
+
+
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+
+                                <EditText
+                                    android:id="@+id/pack8"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Pack"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+
+                                <EditText
+                                    android:id="@+id/tradePrice8"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Trade price"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/tradeValue8"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Trade Value"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/netAmount8"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Net amount"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+
+                            <Button
+                                android:id="@+id/b8"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:background="@drawable/ic_add_circle_black_48dp"/>
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <!-- 9th entry -->
+                    <RelativeLayout
+                        android:id="@+id/l9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:paddingLeft="0dp"
+                        android:paddingRight="0dp"
+                        android:visibility="invisible"
+                        android:layout_below="@+id/l8"
+                        android:background="@drawable/edittext_style">
+
+                        <LinearLayout
+                            android:id="@+id/ninth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:paddingLeft="0dp">
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <AutoCompleteTextView
+                                    android:id="@+id/ProductName9"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Product Name"
+                                    android:gravity="center"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/quantity9"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="@string/quantity"
+                                    android:gravity="center"
+                                    android:textColor="@color/textColor"
+                                    android:background="@drawable/login_edittext_style"/>
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/discountValue9"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Discount value"
+                                    android:gravity="center"
+                                    android:text="0"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/vat9"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="VAT"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                        </LinearLayout>
+                        <Space
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_below="@+id/ninth"
+                            android:paddingLeft="0dp"
+                            android:paddingRight="0dp">
+
+
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+
+                                <EditText
+                                    android:id="@+id/pack9"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Pack"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+
+                                <EditText
+                                    android:id="@+id/tradePrice9"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Trade price"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/tradeValue9"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Trade Value"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/netAmount9"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Net amount"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+
+                            <Button
+                                android:id="@+id/b9"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:background="@drawable/ic_add_circle_black_48dp"/>
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                   <!-- 10th entry -->
+                    <RelativeLayout
+                        android:id="@+id/l10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:paddingLeft="0dp"
+                        android:paddingRight="0dp"
+                        android:visibility="invisible"
+                        android:layout_below="@+id/l9"
+                        android:background="@drawable/edittext_style">
+
+                        <LinearLayout
+                            android:id="@+id/tenth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:paddingLeft="0dp">
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <AutoCompleteTextView
+                                    android:id="@+id/ProductName10"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Product Name"
+                                    android:gravity="center"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/quantity10"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="@string/quantity"
+                                    android:gravity="center"
+                                    android:textColor="@color/textColor"
+                                    android:background="@drawable/login_edittext_style"/>
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/discountValue10"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Discount value"
+                                    android:gravity="center"
+                                    android:text="0"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/vat10"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="VAT"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                        </LinearLayout>
+                        <Space
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_below="@+id/tenth"
+                            android:paddingLeft="0dp"
+                            android:paddingRight="0dp">
+
+
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+
+                                <EditText
+                                    android:id="@+id/pack10"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Pack"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+
+                                <EditText
+                                    android:id="@+id/tradePrice10"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Trade price"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/tradeValue10"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Trade Value"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:textColorHint="@color/textColor"
+                                android:background="@drawable/login_edittext_style">
+                                <EditText
+                                    android:id="@+id/netAmount10"
+                                    android:layout_width="130sp"
+                                    android:layout_height="50dp"
+                                    android:hint="Net amount"
+                                    android:gravity="center"
+                                    android:editable="false"
+                                    android:textColor="@color/textColor"
+                                    />
+                            </android.support.design.widget.TextInputLayout>
+                            <Space
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"/>
+
+                            <Button
+                                android:id="@+id/b10"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:background="@drawable/ic_add_circle_black_48dp"/>
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+                    <!-- 2nd entry-->
+
+<!--
                     <Space
                         android:layout_width="20dp"
                         android:layout_height="20dp"
@@ -589,7 +2563,10 @@
                             android:background="@drawable/ic_add_circle_black_48dp"/>
                     </LinearLayout>
 
+                    -->
+
                     <!-- 3rd entry-->
+                    <!--
 
                     <LinearLayout
                         android:id="@+id/l3"
@@ -752,8 +2729,10 @@
                             android:gravity="center"
                             android:background="@drawable/ic_add_circle_black_48dp"/>
                     </LinearLayout>
+                    -->
 
                     <!-- 4th entry-->
+                    <!--
 
                     <LinearLayout
                         android:id="@+id/l4"
@@ -916,8 +2895,10 @@
                             android:gravity="center"
                             android:background="@drawable/ic_add_circle_black_48dp"/>
                     </LinearLayout>
+                    -->
 
                     <!-- 5th entry-->
+                    <!--
 
                     <LinearLayout
                         android:id="@+id/l5"
@@ -1079,8 +3060,10 @@
                             android:gravity="center"
                             android:background="@drawable/ic_add_circle_black_48dp"/>
                     </LinearLayout>
+                    -->
 
                     <!-- 6th entry-->
+                    <!--
 
                     <LinearLayout
                         android:id="@+id/l6"
@@ -1243,7 +3226,10 @@
                             android:background="@drawable/ic_add_circle_black_48dp"/>
                     </LinearLayout>
 
+                    -->
+
                     <!-- 7th entry-->
+                    <!--
 
                     <LinearLayout
                         android:id="@+id/l7"
@@ -1407,8 +3393,10 @@
                             android:gravity="center"
                             android:background="@drawable/ic_add_circle_black_48dp"/>
                     </LinearLayout>
+                    -->
 
                     <!-- 8th entry-->
+                    <!--
 
                     <LinearLayout
                         android:id="@+id/l8"
@@ -1570,8 +3558,11 @@
                             android:gravity="center"
                             android:background="@drawable/ic_add_circle_black_48dp"/>
                     </LinearLayout>
+                    -->
 
                     <!-- 9th entry-->
+
+                    <!--
 
                     <LinearLayout
                         android:id="@+id/l9"
@@ -1733,8 +3724,10 @@
                             android:gravity="center"
                             android:background="@drawable/ic_add_circle_black_48dp"/>
                     </LinearLayout>
+                    -->
 
                     <!-- 10th entry-->
+                    <!--
 
                     <LinearLayout
                         android:id="@+id/l10"
@@ -1896,6 +3889,9 @@
                             android:gravity="center"
                             android:background="@drawable/ic_add_circle_black_48dp"/>
                     </LinearLayout>
+                    -->
+
+
 
 
                 </RelativeLayout>
@@ -1931,7 +3927,7 @@
             <!-- Result -->
 
 
-
+           <!--
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -2049,8 +4045,167 @@
 
                 </LinearLayout>
 
-
             </HorizontalScrollView>
+            -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/a">
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="@string/totalItem"
+                    android:textSize="18sp"
+                    android:textColor="@color/md_green_400"/>
+                    <Space
+                        android:layout_width="58dp"
+                        android:layout_height="5dp"/>
+                <EditText
+                    android:id="@+id/noOfItem"
+                    android:layout_width="150sp"
+                    android:layout_height="50dp"
+                    android:hint="No of items"
+                    android:editable="false"
+                    android:text="0"
+                    android:textColor="@color/textColor"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:layout_toRightOf="@+id/a"
+                    android:background="@drawable/login_edittext_style"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/b"
+                    android:layout_below="@+id/a"
+                    android:paddingTop="10dp">
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="@string/totalTradePrice"
+                    android:textSize="18sp"
+                    android:textColor="@color/md_green_400"/>
+                    <Space
+                        android:layout_width="5dp"
+                        android:layout_height="5dp"/>
+                <EditText
+                    android:id="@+id/TotalTradeValue"
+                    android:layout_width="150sp"
+                    android:layout_height="50dp"
+
+                    android:textColor="@color/textColor"
+                    android:textSize="18sp"
+                    android:editable="false"
+                    android:gravity="center"
+                    android:layout_below="@+id/a"
+                    android:background="@drawable/login_edittext_style"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/c"
+                    android:layout_below="@+id/b"
+                    android:paddingTop="10dp">
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="@string/totalDiscount"
+                    android:textSize="18sp"
+                    android:textColor="@color/md_green_400"/>
+                    <Space
+                        android:layout_width="24dp"
+                        android:layout_height="5dp"/>
+                <EditText
+                    android:id="@+id/TotalDiscountValue"
+                    android:layout_width="150sp"
+                    android:layout_height="50dp"
+                    android:textSize="18sp"
+                    android:editable="false"
+                    android:textColor="@color/textColor"
+                    android:gravity="center"
+                    android:layout_below="@+id/TotalTradeValue"
+                    android:background="@drawable/login_edittext_style"/>
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/d"
+                    android:layout_below="@+id/c"
+                    android:paddingTop="10dp">
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="@string/totalVat"
+                    android:textSize="18sp"
+                    android:textColor="@color/md_green_400"/>
+                    <Space
+                        android:layout_width="63dp"
+                        android:layout_height="5dp"/>
+                <EditText
+                    android:id="@+id/TotalVat"
+                    android:layout_width="150sp"
+                    android:layout_height="50dp"
+                    android:editable="false"
+                    android:textColor="@color/textColor"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:layout_below="@+id/TotalDiscountValue"
+                    android:background="@drawable/login_edittext_style"/>
+           </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/e"
+                    android:layout_below="@+id/d"
+                    android:paddingTop="10dp">
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="@string/totalNetAmount"
+                    android:textSize="18sp"
+                    android:textColor="@color/md_green_400"/>
+                    <Space
+                        android:layout_width="2dp"
+                        android:layout_height="5dp"/>
+                <EditText
+                    android:id="@+id/TotalNetAmount"
+                    android:layout_width="150sp"
+                    android:layout_height="50dp"
+                    android:editable="false"
+                    android:textColor="@color/textColor"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:layout_below="@+id/TotalVat"
+                    android:background="@drawable/login_edittext_style"
+                    />
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <Space
+                android:layout_width="100dp"
+                android:layout_height="5dp"/>
+
             <Button
                 android:id="@+id/save"
                 android:layout_width="match_parent"

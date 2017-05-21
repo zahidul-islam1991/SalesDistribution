@@ -16,8 +16,11 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.csi.salesdistribution.Utility.Constants;
@@ -54,11 +57,14 @@ public class Login extends AppCompatActivity {
     TextView forget_password, new_account;
     private EditText editTextUserName;
     private EditText editTextPassword;
-
+    private ImageView imageViewLogo;
+    Animation animation;
     public static final String USER_NAME = "USERNAME";
     public static final String EMP_CODE="EMPCODE";
     public static final String NAME="NAME";
     public static final String API_TOKEN="APITOKEN";
+    public static final String TERRITORY="TERRITORY";
+    public static final String TERRITORY_CODE="TERRITORY_CODE";
     public static final String ID="ID";
    //sharedpreference
     public static final String PREFS_NAME = "LoginPrefs";
@@ -74,6 +80,10 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         initUI();
+        //Animation
+        animation = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.bounce);
+        imageViewLogo.setAnimation(animation);
 
         //sharedPreference
         sharedPreferences=getSharedPreferences("login", MODE_PRIVATE);
@@ -117,6 +127,8 @@ public class Login extends AppCompatActivity {
                     private String name="Test";
                     private String apiToken="text";
                     private  String id="text";
+                    private  String territoryName="text";
+                    private  String territoryCode="text";
 
                     @Override
                     protected void onPreExecute() {
@@ -144,13 +156,22 @@ public class Login extends AppCompatActivity {
                                 Log.i("LoginIF",jsonObjectResponse.getString(Constants.MESSAGE));
                                 JSONObject userData = jsonObjectResponse.getJSONObject("data");
 
+
                                 id = userData.getString(Constants.LogInFields.ID);
                                 name = userData.getString(Constants.LogInFields.NAME);
                                 String username = userData.getString(Constants.LogInFields.USER_NAME);
                                 empCode = userData.getString(Constants.LogInFields.EMP_CODE);
                                 apiToken = userData.getString(Constants.LogInFields.API_TOKEN);
                                 String userStatus = userData.getString(Constants.LogInFields.STATUS);
+
                                 result = jsonObjectResponse.getString(Constants.STATUS);
+
+                                JSONObject teritory = userData.getJSONObject("teritory");
+                                territoryName=teritory.getString(Constants.LogInFields.TERRITORY);
+                                territoryCode=teritory.getString(Constants.LogInFields.TERRITORY_CODE);
+
+
+
 
                                 Log.i("LoginIF",jsonObjectResponse.getString(Constants.LogInFields.STATUS));
 
@@ -203,18 +224,20 @@ public class Login extends AppCompatActivity {
                         if (result.equalsIgnoreCase("success")) {
 
                             Intent intent = new Intent(Login.this, Dashboard.class);
-                            Toast toast= Toast.makeText(getApplicationContext(), "  Login Successfull  ", Toast.LENGTH_LONG);
+                            /*Toast toast= Toast.makeText(getApplicationContext(), "  Login Successfull  ", Toast.LENGTH_LONG);
                             View view=toast.getView();
                             view.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4caf50")));
                             view.setBackgroundResource(R.drawable.toast_style);
                             toast.show();
-                            
+                            */
 
                             //sharedPreference
                             SharedPreferences.Editor editor=sharedPreferences.edit();
                             editor.putString(USER_NAME, username);
                             editor.putString(EMP_CODE, empCode);
                             editor.putString(API_TOKEN, apiToken);
+                            editor.putString(TERRITORY, territoryName);
+                            editor.putString(TERRITORY_CODE, territoryCode);
                             editor.commit();
                             finish();
                             startActivity(intent);
@@ -297,7 +320,7 @@ public class Login extends AppCompatActivity {
         forget_password = (TextView) findViewById(R.id.forget_password);
         editTextUserName = (EditText) findViewById(R.id.userId);
         editTextPassword = (EditText) findViewById(R.id.password);
-
+        imageViewLogo = (ImageView) findViewById(R.id.logo);
     }
 
     //Show internet connection

@@ -11,12 +11,18 @@
     <string name="customer_name">Customer Name</string>
     <string name="customer_type">Customer Type</string>
     <string name="mobile">Mobile</string>
+    <string name="phone">Phone</string>
+    <string name="email">Email</string>
     <string name="address">Address</string>
     <string name="category">Category</string>
     <string name="register">Register</string>
     <string name="sales_person">Sales Person</string>
-    <string name="room_no">Room No</string>
+    <string name="territory">Territory</string>
     <string name="house_name">House Name</string>
+    <string name="thana">Thana</string>
+    <string name="address1">Address 1</string>
+    <string name="address2">Address 2</string>
+    <string name="address3">Address 3</string>
     <string name="holding_no">Holding No</string>
     <string name="road_no">Road No</string>
     <string name="Road_name">Road Name</string>
@@ -48,6 +54,11 @@
     <string name="exitMessage">Do you want to close this application??</string>
     <string name="connectionTitle">Unable to connect</string>
     <string name="connectinErrorMessage">You need internet connection for this app. Please turn on mobile network or Wi-Fi in Settings &amp; open the app again</string>
+    <string name="totalItem">Total Item</string>
+    <string name="totalTradePrice">Total Trade Price</string>
+    <string name="totalDiscount">Total Discount</string>
+    <string name="totalVat">Total VAT</string>
+    <string name="totalNetAmount">Total net Amount</string>
 
 
     <!-- testing-->

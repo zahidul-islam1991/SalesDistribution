@@ -86,7 +86,8 @@ public class OrderEntry extends AppCompatActivity {
       String rate,quan;
       String defaultValue="0";
       String pattern = "^([a-zA-Z ]*)$";
-
+      String invalidValu=":";
+      String marketCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,7 +160,24 @@ public class OrderEntry extends AppCompatActivity {
         autoCompleteProductName9.setAdapter(new SuggestionAdapterProduct(this, autoCompleteProductName9.getText().toString(),apiToken));
         autoCompleteProductName10.setAdapter(new SuggestionAdapterProduct(this, autoCompleteProductName10.getText().toString(),apiToken));
 
-
+       // today try for substring
+       autoCompleteCustomer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+           @Override
+           public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+               String cutomerNmae = autoCompleteCustomer.getText().toString();
+               if(cutomerNmae.contains(invalidValu)){
+                   autoCompleteCustomer.setError("This is not a name \nChoose a valid Name");
+               }
+               try {
+                   if (cutomerNmae != null || !cutomerNmae.equalsIgnoreCase("")) {
+                       Customer customer = Util.getCustomerByName(cutomerNmae);
+                       //editTextMarketPlace.setText(customer.getPhone());
+                       marketCode= customer.getCareOf();
+                       editTextMarketPlace.setText(marketCode);
+                   }
+               }catch (Exception e){e.printStackTrace();}
+           }
+       });
 
 
 
@@ -177,16 +195,7 @@ public class OrderEntry extends AppCompatActivity {
             }
         });
 
-        //just try
-       /* autoCompleteCustomer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String nmae=autoCompleteCustomer.getText().toString();
-                Customer customer=Util.getCustomerByName(nmae);
-                editTextCustomerID.setText(customer.getId());
-            }
-        });
-        */
+
 
         //save Product entry
         buttonSave.setOnClickListener(new View.OnClickListener() {
@@ -454,6 +463,17 @@ public class OrderEntry extends AppCompatActivity {
         ArrayAdapter payment=ArrayAdapter.createFromResource(this, R.array.PAYMENT, android.R.layout.simple_spinner_item);
         payment.setDropDownViewResource(R.layout.spinner_list);
         payment_method.setAdapter(payment);
+        payment_method.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                ((TextView) adapterView.getChildAt(0)).setTextColor(Color.GRAY);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         //Expand more product entry
 
@@ -472,7 +492,9 @@ public class OrderEntry extends AppCompatActivity {
                              editTextTradeprice1.setText(product.getTradePrice());
                              editTextTradevalue1.setText(product.getTradeValue());
                              editTextpack1.setText(product.getPack_size());
-                             editTextVat1.setText(Constants.StaticValue.VAT);
+                            // editTextVat1.setText(Constants.StaticValue.VAT);
+                             editTextVat1.setText(product.getVat());
+                             editTextDiscount1.setText(product.getDiscount());
                              editTextTotalNoItem.setText("1");
                              //productArrayList.add(product);
                              editTextQuantity1.addTextChangedListener(new TextWatcher() {
@@ -502,8 +524,10 @@ public class OrderEntry extends AppCompatActivity {
                                      double quantity=Double.parseDouble(quan);
                                      double price1=Double.parseDouble(price);
                                      double realVat=Double.parseDouble(vat);
-                                     discount1=Double.parseDouble(dis);
-
+                                    try {
+                                        discount1 = Double.parseDouble(dis);
+                                    }
+                                    catch (Exception e){}
                                       //pricewithVAT,netTotal;
                                      pricewithoutVAT1=price1*quantity;
                                      VAT1=(pricewithoutVAT1 * realVat)/100;
@@ -538,6 +562,7 @@ public class OrderEntry extends AppCompatActivity {
                                      if (dis.matches(pattern)){
                                          editTextDiscount1.setError("Invalid");
                                          editTextDiscount1.requestFocus();
+                                         //editTextDiscount1.setText("0");
                                          return;
                                      }
                                      discount1=Double.parseDouble(dis);
@@ -574,7 +599,9 @@ public class OrderEntry extends AppCompatActivity {
                     editTextTradeprice2.setText(product.getTradePrice());
                     editTextTradevalue2.setText(product.getTradeValue());
                     editTextpack2.setText(product.getPack_size());
-                    editTextVat2.setText(Constants.StaticValue.VAT);
+                    //editTextVat2.setText(Constants.StaticValue.VAT);
+                    editTextVat2.setText(product.getVat());
+                    editTextDiscount2.setText(product.getDiscount());
                     editTextTotalNoItem.setText("2");
                     //productArrayList.add(product);
                     editTextQuantity2.addTextChangedListener(new TextWatcher() {
@@ -604,7 +631,9 @@ public class OrderEntry extends AppCompatActivity {
                             double quantity=Double.parseDouble(quan);
                             double price1=Double.parseDouble(price);
                             double realVat=Double.parseDouble(vat);
-                            discount2=Double.parseDouble(dis);
+                            try {
+                                discount2 = Double.parseDouble(dis);
+                            }catch (Exception e){}
                             //pricewithVAT,netTotal;
                             pricewithoutVAT2=price1*quantity;
                              VAT2=(pricewithoutVAT2 * realVat)/100;
@@ -676,7 +705,9 @@ public class OrderEntry extends AppCompatActivity {
                     editTextTradeprice3.setText(product.getTradePrice());
                     editTextTradevalue3.setText(product.getTradeValue());
                     editTextpack3.setText(product.getPack_size());
-                    editTextVat3.setText(Constants.StaticValue.VAT);
+                    //editTextVat3.setText(Constants.StaticValue.VAT);
+                    editTextVat3.setText(product.getVat());
+                    editTextDiscount3.setText(product.getDiscount());
                     editTextTotalNoItem.setText("3");
                    // productArrayList.add(product);
                     editTextQuantity3.addTextChangedListener(new TextWatcher() {
@@ -706,7 +737,9 @@ public class OrderEntry extends AppCompatActivity {
                             double quantity=Double.parseDouble(quan);
                             double price1=Double.parseDouble(price);
                             double realVat=Double.parseDouble(vat);
-                            discount3=Double.parseDouble(dis);
+                            try {
+                                discount3 = Double.parseDouble(dis);
+                            }catch (Exception e){}
                             //pricewithVAT,netTotal;
                             pricewithoutVAT3=price1*quantity;
                              VAT3=(pricewithoutVAT3 * realVat)/100;
@@ -781,7 +814,9 @@ public class OrderEntry extends AppCompatActivity {
                     editTextTradeprice4.setText(product.getTradePrice());
                     editTextTradevalue4.setText(product.getTradeValue());
                     editTextpack4.setText(product.getPack_size());
-                    editTextVat4.setText(Constants.StaticValue.VAT);
+                    //editTextVat4.setText(Constants.StaticValue.VAT);
+                    editTextVat4.setText(product.getVat());
+                    editTextDiscount4.setText(product.getDiscount());
                     editTextTotalNoItem.setText("4");
                    // productArrayList.add(product);
                     editTextQuantity4.addTextChangedListener(new TextWatcher() {
@@ -811,7 +846,9 @@ public class OrderEntry extends AppCompatActivity {
                             double quantity=Double.parseDouble(quan);
                             double price1=Double.parseDouble(price);
                             double realVat=Double.parseDouble(vat);
-                             discount4=Double.parseDouble(dis);
+                            try {
+                                discount4 = Double.parseDouble(dis);
+                            }catch (Exception e){}
                             //pricewithVAT,netTotal;
                             pricewithoutVAT4=price1*quantity;
                             VAT4=(pricewithoutVAT4 * realVat)/100;
@@ -885,7 +922,9 @@ public class OrderEntry extends AppCompatActivity {
                     editTextTradeprice5.setText(product.getTradePrice());
                     editTextTradevalue5.setText(product.getTradeValue());
                     editTextpack5.setText(product.getPack_size());
-                    editTextVat5.setText(Constants.StaticValue.VAT);
+                   // editTextVat5.setText(Constants.StaticValue.VAT);
+                    editTextVat5.setText(product.getVat());
+                    editTextDiscount5.setText(product.getDiscount());
                     editTextTotalNoItem.setText("5");
                     //productArrayList.add(product);
                     editTextQuantity5.addTextChangedListener(new TextWatcher() {
@@ -915,7 +954,9 @@ public class OrderEntry extends AppCompatActivity {
                             double quantity=Double.parseDouble(quan);
                             double price1=Double.parseDouble(price);
                             double realVat=Double.parseDouble(vat);
-                             discount5=Double.parseDouble(dis);
+                            try {
+                                discount5 = Double.parseDouble(dis);
+                            }catch (Exception e){}
                             //pricewithVAT,netTotal;
                             pricewithoutVAT5=price1*quantity;
                              VAT5=(pricewithoutVAT5 * realVat)/100;
@@ -988,7 +1029,9 @@ public class OrderEntry extends AppCompatActivity {
                     editTextTradeprice6.setText(product.getTradePrice());
                     editTextTradevalue6.setText(product.getTradeValue());
                     editTextpack6.setText(product.getPack_size());
-                    editTextVat6.setText(Constants.StaticValue.VAT);
+                   // editTextVat6.setText(Constants.StaticValue.VAT);
+                    editTextVat6.setText(product.getVat());
+                    editTextDiscount6.setText(product.getDiscount());
                     editTextTotalNoItem.setText("6");
                     //productArrayList.add(product);
                     editTextQuantity6.addTextChangedListener(new TextWatcher() {
@@ -1018,7 +1061,9 @@ public class OrderEntry extends AppCompatActivity {
                             double quantity=Double.parseDouble(quan);
                             double price1=Double.parseDouble(price);
                             double realVat=Double.parseDouble(vat);
-                            discount6=Double.parseDouble(dis);
+                            try {
+                                discount6 = Double.parseDouble(dis);
+                            }catch (Exception e){}
                             //pricewithVAT,netTotal;
                             pricewithoutVAT6=price1*quantity;
                              VAT6=(pricewithoutVAT6 * realVat)/100;
@@ -1081,7 +1126,7 @@ public class OrderEntry extends AppCompatActivity {
         });
 
 
-                //7th product
+        //7th product
         autoCompleteProductName7.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -1091,7 +1136,9 @@ public class OrderEntry extends AppCompatActivity {
                     editTextTradeprice7.setText(product.getTradePrice());
                     editTextTradevalue7.setText(product.getTradeValue());
                     editTextpack7.setText(product.getPack_size());
-                    editTextVat7.setText(Constants.StaticValue.VAT);
+                    //editTextVat7.setText(Constants.StaticValue.VAT);
+                    editTextVat7.setText(product.getVat());
+                    editTextDiscount7.setText(product.getDiscount());
                     editTextTotalNoItem.setText("7");
                     //productArrayList.add(product);
                     editTextQuantity7.addTextChangedListener(new TextWatcher() {
@@ -1121,7 +1168,9 @@ public class OrderEntry extends AppCompatActivity {
                             double quantity=Double.parseDouble(quan);
                             double price1=Double.parseDouble(price);
                             double realVat=Double.parseDouble(vat);
-                             discount7=Double.parseDouble(dis);
+                            try {
+                                discount7 = Double.parseDouble(dis);
+                            }catch (Exception e){}
                             //pricewithVAT,netTotal;
                             pricewithoutVAT7=price1*quantity;
                              VAT7=(pricewithoutVAT7 * realVat)/100;
@@ -1194,7 +1243,9 @@ public class OrderEntry extends AppCompatActivity {
                     editTextTradeprice8.setText(product.getTradePrice());
                     editTextTradevalue8.setText(product.getTradeValue());
                     editTextpack8.setText(product.getPack_size());
-                    editTextVat8.setText(Constants.StaticValue.VAT);
+                    //editTextVat8.setText(Constants.StaticValue.VAT);
+                    editTextVat8.setText(product.getVat());
+                    editTextDiscount8.setText(product.getDiscount());
                     editTextTotalNoItem.setText("8");
                     //productArrayList.add(product);
                     editTextQuantity8.addTextChangedListener(new TextWatcher() {
@@ -1224,7 +1275,9 @@ public class OrderEntry extends AppCompatActivity {
                             double quantity=Double.parseDouble(quan);
                             double price1=Double.parseDouble(price);
                             double realVat=Double.parseDouble(vat);
-                            discount8=Double.parseDouble(dis);
+                            try {
+                                discount8 = Double.parseDouble(dis);
+                            }catch (Exception e){}
                             //pricewithVAT,netTotal;
                             pricewithoutVAT8=price1*quantity;
                              VAT8=(pricewithoutVAT8 * realVat)/100;
@@ -1298,7 +1351,9 @@ public class OrderEntry extends AppCompatActivity {
                     editTextTradeprice9.setText(product.getTradePrice());
                     editTextTradevalue9.setText(product.getTradeValue());
                     editTextpack9.setText(product.getPack_size());
-                    editTextVat9.setText(Constants.StaticValue.VAT);
+                    //editTextVat9.setText(Constants.StaticValue.VAT);
+                    editTextVat9.setText(product.getVat());
+                    editTextDiscount9.setText(product.getDiscount());
                     editTextTotalNoItem.setText("9");
                     //productArrayList.add(product);
                     editTextQuantity9.addTextChangedListener(new TextWatcher() {
@@ -1328,7 +1383,9 @@ public class OrderEntry extends AppCompatActivity {
                             double quantity=Double.parseDouble(quan);
                             double price1=Double.parseDouble(price);
                             double realVat=Double.parseDouble(vat);
-                             discount9=Double.parseDouble(dis);
+                            try {
+                                discount9 = Double.parseDouble(dis);
+                            }catch (Exception e){}
                             //pricewithVAT,netTotal;
                             pricewithoutVAT9=price1*quantity;
                              VAT9=(pricewithoutVAT9 * realVat)/100;
@@ -1401,7 +1458,9 @@ public class OrderEntry extends AppCompatActivity {
                     editTextTradeprice10.setText(product.getTradePrice());
                     editTextTradevalue10.setText(product.getTradeValue());
                     editTextpack10.setText(product.getPack_size());
-                    editTextVat10.setText(Constants.StaticValue.VAT);
+                    //editTextVat10.setText(Constants.StaticValue.VAT);
+                    editTextVat10.setText(product.getVat());
+                    editTextDiscount10.setText(product.getDiscount());
                     editTextTotalNoItem.setText("10");
                     //productArrayList.add(product);
                     editTextQuantity10.addTextChangedListener(new TextWatcher() {
@@ -1431,7 +1490,9 @@ public class OrderEntry extends AppCompatActivity {
                             double quantity=Double.parseDouble(quan);
                             double price1=Double.parseDouble(price);
                             double realVat=Double.parseDouble(vat);
-                             discount10=Double.parseDouble(dis);
+                            try {
+                                discount10 = Double.parseDouble(dis);
+                            }catch (Exception e){}
                             //pricewithVAT,netTotal;
                             pricewithoutVAT10=price1*quantity;
                              VAT10=(pricewithoutVAT10 * realVat)/100;
@@ -1513,16 +1574,16 @@ public class OrderEntry extends AppCompatActivity {
     public void initUI() {
         final RelativeLayout produclayout=(RelativeLayout) findViewById(R.id.ProductrelativeLayout);
         //Linearlayout entry
-        LinearLayout l1=(LinearLayout)findViewById(R.id.l1);
-        final LinearLayout l2=(LinearLayout)findViewById(R.id.l2);
-        final LinearLayout l3=(LinearLayout)findViewById(R.id.l3);
-        final LinearLayout l4=(LinearLayout)findViewById(R.id.l4);
-        final LinearLayout l5=(LinearLayout)findViewById(R.id.l5);
-        final LinearLayout l6=(LinearLayout)findViewById(R.id.l6);
-        final LinearLayout l7=(LinearLayout)findViewById(R.id.l7);
-        final LinearLayout l8=(LinearLayout)findViewById(R.id.l8);
-        final LinearLayout l9=(LinearLayout)findViewById(R.id.l9);
-        final LinearLayout l10=(LinearLayout)findViewById(R.id.l10);
+        RelativeLayout l1=(RelativeLayout) findViewById(R.id.l1);
+        final RelativeLayout l2=(RelativeLayout) findViewById(R.id.l2);
+        final RelativeLayout l3=(RelativeLayout) findViewById(R.id.l3);
+        final RelativeLayout l4=(RelativeLayout) findViewById(R.id.l4);
+        final RelativeLayout l5=(RelativeLayout) findViewById(R.id.l5);
+        final RelativeLayout l6=(RelativeLayout) findViewById(R.id.l6);
+        final RelativeLayout l7=(RelativeLayout) findViewById(R.id.l7);
+        final RelativeLayout l8=(RelativeLayout) findViewById(R.id.l8);
+        final RelativeLayout l9=(RelativeLayout) findViewById(R.id.l9);
+        final RelativeLayout l10=(RelativeLayout) findViewById(R.id.l10);
 
       //button entry
         final Button buttonexpand1= (Button) findViewById(R.id.b1);
@@ -1661,7 +1722,7 @@ public class OrderEntry extends AppCompatActivity {
                 }
                 l2.setVisibility(View.VISIBLE);
                 ViewGroup.LayoutParams params = produclayout.getLayoutParams();
-                params.height=360 ;
+                params.height=780 ;
                 produclayout.setLayoutParams(params);
             }
         });
@@ -1682,7 +1743,7 @@ public class OrderEntry extends AppCompatActivity {
 
                 l3.setVisibility(View.VISIBLE);
                 ViewGroup.LayoutParams params = produclayout.getLayoutParams();
-                params.height=540 ;
+                params.height=1180 ;
                 produclayout.setLayoutParams(params);
             }
         });
@@ -1702,7 +1763,7 @@ public class OrderEntry extends AppCompatActivity {
                 }
                 l4.setVisibility(View.VISIBLE);
                 ViewGroup.LayoutParams params = produclayout.getLayoutParams();
-                params.height=720 ;
+                params.height=1560 ;
                 produclayout.setLayoutParams(params);
             }
         });
@@ -1722,7 +1783,7 @@ public class OrderEntry extends AppCompatActivity {
                 }
                 l5.setVisibility(View.VISIBLE);
                 ViewGroup.LayoutParams params = produclayout.getLayoutParams();
-                params.height=900 ;
+                params.height=1950 ;
                 produclayout.setLayoutParams(params);
             }
         });
@@ -1742,7 +1803,7 @@ public class OrderEntry extends AppCompatActivity {
                 }
                 l6.setVisibility(View.VISIBLE);
                 ViewGroup.LayoutParams params = produclayout.getLayoutParams();
-                params.height=1090 ;
+                params.height=2340 ;
                 produclayout.setLayoutParams(params);
             }
         });
@@ -1762,7 +1823,7 @@ public class OrderEntry extends AppCompatActivity {
                 }
                 l7.setVisibility(View.VISIBLE);
                 ViewGroup.LayoutParams params = produclayout.getLayoutParams();
-                params.height=1260 ;
+                params.height=2730 ;
                 produclayout.setLayoutParams(params);
             }
         });
@@ -1782,7 +1843,7 @@ public class OrderEntry extends AppCompatActivity {
                 }
                 l8.setVisibility(View.VISIBLE);
                 ViewGroup.LayoutParams params = produclayout.getLayoutParams();
-                params.height=1450 ;
+                params.height=3120 ;
                 produclayout.setLayoutParams(params);
             }
         });
@@ -1802,7 +1863,7 @@ public class OrderEntry extends AppCompatActivity {
                 }
                 l9.setVisibility(View.VISIBLE);
                 ViewGroup.LayoutParams params = produclayout.getLayoutParams();
-                params.height=1620 ;
+                params.height=3510 ;
                 produclayout.setLayoutParams(params);
             }
         });
@@ -1822,7 +1883,7 @@ public class OrderEntry extends AppCompatActivity {
                 }
                 l10.setVisibility(View.VISIBLE);
                 ViewGroup.LayoutParams params = produclayout.getLayoutParams();
-                params.height=1800 ;
+                params.height=3900 ;
                 produclayout.setLayoutParams(params);
             }
         });
